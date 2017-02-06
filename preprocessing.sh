@@ -23,7 +23,8 @@ samtools index –b sorted.bam
 #Picard tools – remove duplicates
 
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/ch4_star/dup.txt INPUT=/home/sb/star_output/ch4_star/sorted.bam OUTPUT=/home/sb/star_output/ch4_star/new_sorted.bam
-java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/ci_star/dup.txt INPUT=/home/sb/star_output/ci_star/sorted.bam OUTPUT=/home/sb/star_output/ci_star/new_sorted.bamjava -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/th4_star/dup.txt INPUT=/home/sb/star_output/th4_star/sorted.bam OUTPUT=/home/sb/star_output/th4_star/new_sorted.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/ci_star/dup.txt INPUT=/home/sb/star_output/ci_star/sorted.bam OUTPUT=/home/sb/star_output/ci_star/new_sorted.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/th4_star/dup.txt INPUT=/home/sb/star_output/th4_star/sorted.bam OUTPUT=/home/sb/star_output/th4_star/new_sorted.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/star_output/ti_star/dup.txt INPUT=/home/sb/star_output/ti_star/sorted.bam OUTPUT=/home/sb/star_output/ti_star/new_sorted.bam
 
 #sort & index alignment files
