@@ -64,7 +64,7 @@ samtools index -b sorted2.bam
 ##Ac-1 & Input-1
 macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/star_output/sorted_n.bam -c /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/sorted_n.bam -f BAMPE —g 3.08e9 -n h3k27ac_0h --broad --q 0.05 --outdir /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/macs_out
 ##Ac-2 & Input-2
-macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/sorted2.bam -c /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted2.bam -f BAMPE —g 3.08e9 -n h3k27ac_4h --broad --q 0.05 --outdir /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/macs_out
+macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/sorted_n.bam -c /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted_n.bam -f BAMPE —g 3.08e9 -n h3k27ac_4h --broad --q 0.05 --outdir /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/macs_out
 ##Ac-3 & Input-3
 macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/sorted2.bam -c /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/sorted2.bam -f BAMPE —g 3.08e9 -n h3k27ac_4h --broad --q 0.05 --outdir /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/macs_out
 
