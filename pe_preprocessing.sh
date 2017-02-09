@@ -25,9 +25,9 @@ programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeD
 #Me-3
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_49_noann  --readFilesIn /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/raw_data/FCHCYFKBBXX_L4_wHAPPI040292-23_1.fq /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/raw_data/FCHCYFKBBXX_L4_wHAPPI040292-23_2.fq --outFileNamePrefix /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/ --alignEndsType EndToEnd
 #H3-1
-
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_49_noann  --readFilesIn /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/raw_data/FCHCYFKBBXX_L4_wHAPPI040293-12_1.fq /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/raw_data/FCHCYFKBBXX_L4_wHAPPI040293-12_2.fq --outFileNamePrefix /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/ --alignEndsType EndToEnd
 #H3-2
-
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_49_noann  --readFilesIn /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/raw_data/FCHCYFKBBXX_L4_wHAPPI040290-13_1.fq /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/raw_data/FCHCYFKBBXX_L4_wHAPPI040290-13_2.fq --outFileNamePrefix /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/ --alignEndsType EndToEnd
 #H3-3
 
 #Samtools convert to bam, sort and index
@@ -84,3 +84,20 @@ macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/input4h_seqdepthnorm.bw
 #Input-3
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/input24h_seqdepthnorm.bw
+
+
+
+#BamtoBed for diffReps input file
+bedtools bamtobed -bedpe -i sorted_n.bam > sorted_n.bed
+cut -f1,2,6,7,8,9,10 sorted_n.bed > diff_input.bed
+sed 's/^/chr/' diff_input.bed > new_diffin.bed
+
+#diffReps
+#Ac-2 vs. Ac-1
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/ac2vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+#Ac-3 vs. Ac-2
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/ac3vs2_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+#Ac-3 vs. Ac-1
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/ac3vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+
+
