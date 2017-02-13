@@ -4,6 +4,7 @@ fastqc /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2
 
 #STAR index generation
 programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeDir genome_data/GRCh38/star_index_49_noann --genomeFastaFiles genome_data/GRCh38/sequence/ensembl/GRCh38_r77.all.fa —sjdbOverhang 48
+programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeDir genome_data/GRCh38/star_index_36_noann --genomeFastaFiles genome_data/GRCh38/sequence/ensembl/GRCh38_r77.all.fa —sjdbOverhang 35
 
 #STAR alignment
 #Ac-1
@@ -30,6 +31,15 @@ programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeD
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_49_noann  --readFilesIn /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/raw_data/FCHCYFKBBXX_L4_wHAPPI040290-13_1.fq /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/raw_data/FCHCYFKBBXX_L4_wHAPPI040290-13_2.fq --outFileNamePrefix /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/ --alignEndsType EndToEnd
 #H3-3
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_49_noann  --readFilesIn /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/raw_data/FCHCYFKBBXX_L4_wHAPPI040294-14_1.fq /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/raw_data/FCHCYFKBBXX_L4_wHAPPI040294-14_2.fq --outFileNamePrefix /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/ --alignEndsType EndToEnd
+#CTCF
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/ctcf/ENCSR000DWH/ENCFF001HUF.fastq  --outFileNamePrefix /home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/ctcf/ENCSR000DWH/ENCFF001HUG.fastq  --outFileNamePrefix /home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r2 --alignEndsType EndToEnd
+#P300
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/p300/ENCSR000BTR/ENCFF000QPK.fastq  --outFileNamePrefix /home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/p300/ENCSR000BTR/ENCFF000QPP.fastq  --outFileNamePrefix /home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r2 --alignEndsType EndToEnd
+#H3K27me3
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/ENCFF023EPH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/ENCFF250WAH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2 --alignEndsType EndToEnd
 
 #Samtools convert to bam, sort and index
 samtools view -bS star_outputAligned.out.sam > Aligned.out.bam
@@ -91,6 +101,12 @@ macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/input4h_seqdepthnorm.bw
 #Input-3
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/input24h_seqdepthnorm.bw
+#Me-1
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/me0h_seqdepthnorm.bw
+#Me-2
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/me4h_seqdepthnorm.bw
+#Me-3
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/me24h_seqdepthnorm.bw
 
 
 
