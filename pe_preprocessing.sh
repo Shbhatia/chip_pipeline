@@ -65,7 +65,21 @@ java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMO
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/duplicates.txt INPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/sorted.bam OUTPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/no_dup.bam
 ##Me-3
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/duplicates.txt INPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/sorted.bam OUTPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/no_dup.bam
-
+##H3-1
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/duplicates.txt INPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/sorted1.bam OUTPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/no_dup.bam
+##H3-2
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/duplicates.txt INPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/sorted1.bam OUTPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/no_dup.bam
+##H3-3
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/duplicates.txt INPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/sorted1.bam OUTPUT=/home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/no_dup.bam
+##CTCF
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r1sorted.bam OUTPUT=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r2sorted.bam OUTPUT=/home/sb/grace/encode_data/ctcf/ENCSR000DWH/star_output/r2no_dup.bam
+##p300
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r1sorted.bam OUTPUT=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r2sorted.bam OUTPUT=/home/sb/grace/encode_data/p300/ENCSR000BTR/star_output/r2no_dup.bam
+##h3k27me3
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2no_dup.bam
 
 
 ##samtools sort and index
@@ -107,6 +121,12 @@ macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/me4h_seqdepthnorm.bw
 #Me-3
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/me24h_seqdepthnorm.bw
+#H3-1
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-1/star_output/h30h_seqdepthnorm.bw
+#H3-2
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-2/star_output/h34h_seqdepthnorm.bw
+#H3-3
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/sorted2.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/H3-3/star_output/h324h_seqdepthnorm.bw
 
 
 
@@ -114,6 +134,8 @@ macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC
 bedtools bamtobed -bedpe -i sorted_n.bam > sorted_n.bed
 cut -f1,2,6,7,8,9,10 sorted_n.bed > diff_input.bed
 sed 's/^/chr/' diff_input.bed > new_diffin.bed
+grep -v "chrMT" new_diffin.bed > nomt.bed
+
 
 #diffReps
 #Ac-2 vs. Ac-1
@@ -122,5 +144,11 @@ diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_H
 diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/ac3vs2_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 #Ac-3 vs. Ac-1
 diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/ac3vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+#Me-2 vs. Me-1
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/me2vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+#Me-3 vs. Me-2
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/me3vs2_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+#Me-3 vs. Me-1
+diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/me3vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 
 
