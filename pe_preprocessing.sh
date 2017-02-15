@@ -40,6 +40,15 @@ programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeD
 #H3K27me3
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/ENCFF023EPH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1 --alignEndsType EndToEnd
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/ENCFF250WAH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2 --alignEndsType EndToEnd
+#H3K36me3
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k36me3/ENCSR610IYQ/ENCFF082PFU.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k36me3/ENCSR610IYQ/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k36me3/ENCSR610IYQ/ENCFF819ITL.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k36me3/ENCSR610IYQ/star_output/r2 --alignEndsType EndToEnd
+#H3K9ac
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/ENCFF815TBB.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/ENCFF921PCJ.fastq --outFileNamePrefix /home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r2 --alignEndsType EndToEnd
+#H3K4me2
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/ENCFF002AUN.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/ENCFF870LBH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/star_output/r2 --alignEndsType EndToEnd
 
 #Samtools convert to bam, sort and index
 samtools view -bS star_outputAligned.out.sam > Aligned.out.bam
