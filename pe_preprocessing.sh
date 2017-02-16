@@ -110,6 +110,9 @@ java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMO
 ##Input-RM
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/rm/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/input/rm/star_output/r1sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/rm/star_output/r1no_dup.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/rm/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/input/rm/star_output/r2sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/rm/star_output/r2no_dup.bam
+##DNAse
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r1sorted1.bam OUTPUT=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r2sorted1.bam OUTPUT=/home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r2no_dup.bam
 
 
 ##samtools sort and index
