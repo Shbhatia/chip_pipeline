@@ -49,6 +49,19 @@ programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeD
 #H3K4me2
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/ENCFF002AUN.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/star_output/r1 --alignEndsType EndToEnd
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/ENCFF870LBH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me2/ENCSR875KOJ/star_output/r2 --alignEndsType EndToEnd
+#DNase
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/dnase/ENCSR000EPJ/ENCFF001DYT.fastq  --outFileNamePrefix /home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/dnase/ENCSR000EPJ/ENCFF001DZK.fastq  --outFileNamePrefix /home/sb/grace/encode_data/dnase/ENCSR000EPJ/star_output/r2 --alignEndsType EndToEnd
+#Input-BB
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/bb/ENCFF222VRH.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/bb/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/bb/ENCFF318ZNB.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/bb/star_output/r2 --alignEndsType EndToEnd
+#Input-JS
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/js/ENCFF001HUM.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/js/star_output --alignEndsType EndToEnd
+#Input-RM
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/rm/ENCFF000QQG.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/rm/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/rm/ENCFF000QQJ.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/rm/star_output/r2 --alignEndsType EndToEnd
+
+
 
 #Samtools convert to bam, sort and index
 samtools view -bS star_outputAligned.out.sam > Aligned.out.bam
@@ -89,6 +102,14 @@ java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMO
 ##h3k27me3
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r1no_dup.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k27me3/ENCSR761DLU/star_output/r2no_dup.bam
+##Input-BB
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/bb/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/input/bb/star_output/r1sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/bb/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/bb/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/input/bb/star_output/r2sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/bb/star_output/r2no_dup.bam
+##Input-JS
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/js/star_output/duplicates.txt INPUT=/home/sb/grace/encode_data/input/js/star_output/sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/js/star_output/no_dup.bam
+##Input-RM
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/rm/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/input/rm/star_output/r1sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/rm/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/input/rm/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/input/rm/star_output/r2sorted1.bam OUTPUT=/home/sb/grace/encode_data/input/rm/star_output/r2no_dup.bam
 
 
 ##samtools sort and index
