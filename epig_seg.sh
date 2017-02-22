@@ -11,4 +11,4 @@ Rscript epicseg.R getcounts --regions /home/sb/epicseg/grace_peaks/regions.bed -
 /home/sb/programfiles/epicseg.R segment --counts /home/sb/grace/epicseg/epic_out1.txt --regions /home/sb/grace/epicseg/epic_out1_refined_regions.bed --nstates 8 --nthreads 15 --outdir /home/sb/grace/epicseg
 #Run segmentation - locally
 Rscript epicseg.R segment --counts ./epic_out1.txt --regions ./epic_out1_refined_regions.bed --nstates 8 --nthreads 15 --outdir ./ 
-Rscript epicseg.R segment --counts ./epic_out2.txt --regions ./epic_out2_refined_regions.bed --nstates 8 --nthreads 15 --outdir ./ 
+Rscript ../epicseg.R segment --counts ./epic_out2.txt --regions ./epic_out2_refined_regions.bed --nstates 4 --nthreads 4 --outdir ./ 
