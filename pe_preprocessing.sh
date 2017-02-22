@@ -60,6 +60,9 @@ programfiles/STAR/source/STAR --runThreadN 20 --runMode genomeGenerate --genomeD
 #Input-RM
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/rm/ENCFF000QQG.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/rm/star_output/r1 --alignEndsType EndToEnd
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/input/rm/ENCFF000QQJ.fastq  --outFileNamePrefix /home/sb/grace/encode_data/input/rm/star_output/r2 --alignEndsType EndToEnd
+#H3K4me3
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/ENCFF211APE.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r1 --alignEndsType EndToEnd
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 25   --genomeDir /home/sb/genome_data/GRCh38/star_index_noann  --readFilesIn /home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/ENCFF923ABZ.fastq  --outFileNamePrefix /home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r2 --alignEndsType EndToEnd
 
 
 
@@ -122,6 +125,9 @@ java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMO
 ##h3k9ac
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r1sorted1.bam OUTPUT=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r1no_dup.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r2sorted1.bam OUTPUT=/home/sb/grace/encode_data/h3k9ac/ENCSR056UBA/star_output/r2no_dup.bam
+#h3k4me3
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r1duplicates.txt INPUT=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r1sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r1no_dup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r2duplicates.txt INPUT=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r2sorted.bam OUTPUT=/home/sb/grace/encode_data/h3k4me3/ENCSR985MIB/star_output/r2no_dup.bam
 
 ##samtools sort and index
 samtools sort no_dup.bam > sorted2.bam
