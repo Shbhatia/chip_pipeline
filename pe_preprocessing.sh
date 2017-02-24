@@ -208,6 +208,11 @@ diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_H
 #Me-3 vs. Me-1
 diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/me3vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 
-#HOMER findPeaks
+#HOMER make tag directory
 #H3K27ac
+makeTagDirectory /home/sb/grace/homer/h3k27ac-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/mcf7_h3k27ac.bam
+#Input
+makeTagDirectory /home/sb/grace/homer/Control-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/gc_input.bam
 
+#HOMER findpeaks
+findPeaks /home/sb/grace/homer/h3k27ac-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-ChIP-Seq/
