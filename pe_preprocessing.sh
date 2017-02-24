@@ -208,4 +208,6 @@ diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_H
 #Me-3 vs. Me-1
 diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/nomt.bed --control /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-1/star_output/nomt.bed --report /home/sb/grace/chip/diffreps_output/me3vs1_output --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/nomt.bed --bco /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 
+#HOMER findPeaks
+#H3K27ac
 
