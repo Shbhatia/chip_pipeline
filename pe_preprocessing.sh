@@ -210,9 +210,22 @@ diffReps.pl --treatment /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_H
 
 #HOMER make tag directory
 #H3K27ac
-makeTagDirectory /home/sb/grace/homer/h3k27ac-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/mcf7_h3k27ac.bam
+makeTagDirectory /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/mcf7_h3k27ac.bam
+makeTagDirectory /home/sb/grace/homer/h3k4me1-0h-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/mcf7_h3k4me1.bam
+
+makeTagDirectory /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/sorted2.bam
+
 #Input
 makeTagDirectory /home/sb/grace/homer/Control-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/gc_input.bam
+makeTagDirectory /home/sb/grace/homer/Control-4h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted2.bam
+
 
 #HOMER findpeaks
-findPeaks /home/sb/grace/homer/h3k27ac-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k4me1-0h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
+
+#homer-output processing bed file
+cut -f2,3,4,5 regions.txt | grep -v '^#' - | awk '{OFS="\t"; if ($4=="+") {print} else {print $1,$3,$2,$4}}' - > h3k27ac_homer.bed
+cut -f2,3,4,5 regions.txt | grep -v '^#' - | awk '{OFS="\t"; if ($4=="+") {print} else {print $1,$3,$2,$4}}' - > h3k4me1_homer.bed
