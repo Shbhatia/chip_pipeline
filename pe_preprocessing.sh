@@ -214,16 +214,21 @@ makeTagDirectory /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ /home/sb/grace/chromh
 makeTagDirectory /home/sb/grace/homer/h3k4me1-0h-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/mcf7_h3k4me1.bam
 
 makeTagDirectory /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-2/star_output/sorted2.bam
+makeTagDirectory /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-3/star_output/sorted2.bam
+
+makeTagDirectory /home/sb/grace/homer/h3k4me1-4h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-2/star_output/sorted2.bam
+makeTagDirectory /home/sb/grace/homer/h3k4me1-24h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Me-3/star_output/sorted2.bam
 
 #Input
 makeTagDirectory /home/sb/grace/homer/Control-ChIP-Seq/ /home/sb/grace/chromhmm/inputdir/gc_input.bam
 makeTagDirectory /home/sb/grace/homer/Control-4h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-2/star_output/sorted2.bam
+makeTagDirectory /home/sb/grace/homer/Control-24h-ChIP-Seq/ /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-3/star_output/sorted2.bam
 
 
 #HOMER findpeaks
 findPeaks /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-ChIP-Seq/
-findPeaks /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
-findPeaks /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-4h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-24h-ChIP-Seq/
 findPeaks /home/sb/grace/homer/h3k4me1-0h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
 
 #homer-output processing bed file
