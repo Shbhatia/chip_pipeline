@@ -233,8 +233,8 @@ findPeaks /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ -style histone -o auto -i /
 findPeaks /home/sb/grace/homer/h3k4me1-0h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
 findPeaks /home/sb/grace/homer/h3k4me1-4h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-4h-ChIP-Seq/
 findPeaks /home/sb/grace/homer/h3k4me1-24h-ChIP-Seq/ -style histone -o auto -i /home/sb/grace/homer/Control-24h-ChIP-Seq/
-findPeaks /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ -style super -o auto -typical typical.txt -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
-findPeaks /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ -style super -typical typical.txt -L 0 -o auto -i /home/sb/grace/homer/Control-4h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-0h-ChIP-Seq/ -style super -o auto -typical typical.txt -L 0 -i /home/sb/grace/homer/Control-0h-ChIP-Seq/
+findPeaks /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/ -style super -typical /home/sb/grace/homer/h3k27ac-4h-ChIP-Seq/typical.txt -L 0 -o auto -i /home/sb/grace/homer/Control-4h-ChIP-Seq/
 findPeaks /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/ -style super -typical /home/sb/grace/homer/h3k27ac-24h-ChIP-Seq/typical.txt -L 0 -o auto -i /home/sb/grace/homer/Control-24h-ChIP-Seq/
 
 #homer-output processing bed file
