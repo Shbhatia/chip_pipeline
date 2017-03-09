@@ -24,6 +24,6 @@ kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rna
 
 
 #STAR index generation
-
+/home/sb/programfiles/STAR/source/STAR --runThreadN 17 --runMode genomeGenerate --genomeDir genome_data/GRCh38/star_index_150 --genomeFastaFiles /home/sb/genome_data/GRCh38/sequence/ensembl/GRCh38_r77.all.fa --sjdbGTFfile /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf --sjdbOverhang 149
 #STAR alignment of RNASeq reads (150bp)
 
