@@ -4,6 +4,9 @@
 #using htseq-count and DESeq2
 #htseq-count SiC
 htseq-count -f bam -r pos --stranded=no /home/sb/star_output/mc_star_output/Aligned.out.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sik/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sic/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+
 #htseq-count SiT
 htseq-count -f bam -r pos --stranded=no /home/sb/star_output/mt_star_output/Aligned.out.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 #metadata - sample list table as dataframe in R
@@ -23,7 +26,10 @@ kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rna
 
 
 
-#STAR index generation
+#STAR index generation (150 bp; hg38 genome build)
 /home/sb/programfiles/STAR/source/STAR --runThreadN 17 --runMode genomeGenerate --genomeDir genome_data/GRCh38/star_index_150 --genomeFastaFiles /home/sb/genome_data/GRCh38/sequence/ensembl/GRCh38_r77.all.fa --sjdbGTFfile /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf --sjdbOverhang 149
 #STAR alignment of RNASeq reads (150bp)
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/hep3b_sic/
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/hep3b_sik/
 
+samtools view -bS Aligned.out.sam > Aligned.out.bam
