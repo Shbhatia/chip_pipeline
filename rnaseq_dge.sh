@@ -15,5 +15,15 @@ wget ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/ncrna/Homo_sapiens.GRC
 cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz > Homo_sapiens.GRCh38.allrna.fa.gz
 #kallisto index build hg38
 kallisto index -i /home/sb/shainan/rnaseq/index_hg38.idx /home/sb/genome_data/GRCh38/sequence/Homo_sapiens.GRCh38.allrna.fa.gz
-#kallisto quantification
+#kallisto quantification (bootstrap 100)
 kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rnaseq/hep3b_sic_output -b 100 -t 20 /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_1.fq.gz /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_2.fq.gz
+kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rnaseq/hep3b_sik_output -b 100 -t 20 /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_1.fq.gz /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_2.fq.gz
+
+
+
+
+
+#STAR index generation
+
+#STAR alignment of RNASeq reads (150bp)
+
