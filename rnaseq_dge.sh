@@ -3,12 +3,12 @@
 
 #using htseq-count and DESeq2
 #htseq-count SiC
-htseq-count -f bam -r pos --stranded=no /home/sb/star_output/mc_star_output/Aligned.out.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sik/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sic/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_dmso/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_jq1/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 
-#htseq-count SiT
-htseq-count -f bam -r pos --stranded=no /home/sb/star_output/mt_star_output/Aligned.out.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+
 #metadata - sample list table as dataframe in R
 
 
@@ -32,5 +32,6 @@ kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rna
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiC_K_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/hep3b_sic/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/Hep3B_SiK_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/hep3b_sik/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_DMSO_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_DMSO_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/lo2_dmso/
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_JQ1_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_JQ1_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/lo2_jq1/
 
 samtools view -bS Aligned.out.sam > Aligned.out.bam
