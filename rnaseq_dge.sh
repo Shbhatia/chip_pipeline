@@ -1,10 +1,3 @@
-#Alignment using STAR
-
-
-
-
-
-
 #get transcriptome files for cdna and ncRNA
 wget ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
 wget ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz
