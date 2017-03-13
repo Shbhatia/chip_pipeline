@@ -1,15 +1,8 @@
 #Alignment using STAR
 
 
-#using htseq-count and DESeq2
-#htseq-count SiC
-htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sik/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
-htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sic/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
-htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_dmso/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
-htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_jq1/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 
 
-#metadata - sample list table as dataframe in R
 
 
 #get transcriptome files for cdna and ncRNA
@@ -35,10 +28,18 @@ kallisto quant -i /home/sb/shainan/rnaseq/index_hg38.idx -o /home/sb/shainan/rna
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_JQ1_1.fq /home/sb/shainan/rnaseq/ftpdata.novogene.cn:2300/C101HW17010347/LO2_JQ1_2.fq --outFileNamePrefix /home/sb/shainan/rnaseq/staroutput/lo2_jq1/
 
 samtools view -bS Aligned.out.sam > Aligned.out.bam
+samtools sort Aligned.out.bam > sorted.bam
+samtools index -b sorted.bam
+
+#using htseq-count
+
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sik/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/hep3b_sic/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_dmso/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
+htseq-count -f bam -r pos --stranded=no /home/sb/shainan/rnaseq/staroutput/lo2_jq1/sorted.bam /home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf
 
 
-
-#R-script
+#running DESeq with R (hep3b sic vs sik)
 datafile = file.path("/home/sb/shainan/rnaseq/staroutput/final_counts_hep3b.tsv")
 hep3bcounttable = read.table(datafile, header=TRUE, row.names=1 )
 hep3bdesign = data.frame(row.names = colnames( hep3bcounttable ), condition = c( "untreated", "treated"), libType = c("paired-end", "paired-end" ) )
