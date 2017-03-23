@@ -51,3 +51,20 @@ head( counts( cds, normalized=TRUE ) )
 cds = estimateDispersions( cds, method="blind", sharingMode="fit-only" )
 res = nbinomTest( cds, "untreated", "treated" )
 write.csv( res, file="hep3b_sicvssik.csv")
+
+
+
+datafile = file.path("/home/sb/shainan/rnaseq/staroutput/final_counts_lo2sicvssik.txt")
+lo2counttable = read.table(datafile, header=TRUE, row.names=1 )
+lo2design = data.frame(row.names = colnames( lo2counttable ), condition = c( "untreated", "treated"), libType = c("paired-end", "paired-end" ) )
+pairedSamples = lo2design$libType == "paired-end"
+countTable = lo2counttable[ , pairedSamples ]
+condition = lo2design$condition[ pairedSamples ]
+library( "DESeq" )
+cds = newCountDataSet( countTable, condition )
+cds = estimateSizeFactors( cds )
+sizeFactors( cds )
+head( counts( cds, normalized=TRUE ) )
+cds = estimateDispersions( cds, method="blind", sharingMode="fit-only" )
+res = nbinomTest( cds, "untreated", "treated" )
+write.csv( res, file="lo2_sicvssik.csv")
