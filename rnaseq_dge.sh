@@ -68,3 +68,13 @@ head( counts( cds, normalized=TRUE ) )
 cds = estimateDispersions( cds, method="blind", sharingMode="fit-only" )
 res = nbinomTest( cds, "untreated", "treated" )
 write.csv( res, file="lo2_sicvssik.csv")
+
+
+#Create boxplot (log2fragment counts)
+datafile = file.path("/Users/sbhatia/Documents/sjdata/shainan/shainan_rnaseq_analysis/output_DESeq/counts_matrices/final_counts_hep3b.tsv")
+hep3bcounttable = read.table(datafile, header=TRUE, row.names=1)
+hep3bdesign = data.frame(hep3bcounttable)
+
+
+
+
