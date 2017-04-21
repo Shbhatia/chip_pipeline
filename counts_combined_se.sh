@@ -22,13 +22,13 @@ maxFragLength=1000000)
 
 counts=data[[1]]
 pdf("moco3.pdf")
-plot(log2(counts[,1]/49559219),log2(counts[,3]/53953899))
+plot(log2(counts[,1]/49559219),log2(counts[,3]/53953899), text(anno("GeneID"))
 plot(log2(counts[,1]/49559219),log2(counts[,2]/52676760))
  dev.off()
  
  abs(log2(counts[,1]/49559219)-log2(counts[,2]/52676760))[order(abs(log2(counts[,1]/49559219)-log2(counts[,2]/52676760)))]
 
-topse1 <- tail(counts[order(abs(log2(counts[,1]/49559219)-log2(counts[,2]/52676760))),],50)
-topse2 <- tail(counts[order(abs(log2(counts[,1]/49559219)-log2(counts[,3]/53953899))),],50)
+topse1 <- tail(counts[order(abs(log2(counts[,1]/49559219)-log2(counts[,2]/52676760))),])
+topse2 <- tail(counts[order(abs(log2(counts[,1]/49559219)-log2(counts[,3]/53953899))),])
 write.table(topse1, "./top2vs1.txt", sep="\t")
 write.table(topse2, "./top3vs1.txt", sep="\t")
