@@ -35,6 +35,24 @@ cat SRR096941_2.fastq.gz SRR096942_2.fastq.gz > mcf7_2.fastq.gz
 #bwa mem
 /home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/mcf7_seq.fq.gz > mcf7_grace_mem.sam
 # -M ensures compatibility with picard
+/home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/ENCFF000QQG.fastq.gz > mcf7_grace_mem1.sam
+/home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/ENCFF000QQI.fastq.gz > mcf7_grace_mem2.sam
 
-samtools view -Sb mcf7_grace.sam |samtools sort - mcf7_grace
+
+
+
+
+#samtools get bam format
+samtools view -Sb mcf7_grace_mem.sam > mcf7_grace_mem.bam
+samtools sort mcf7_grace_mem.bam > sorted_mcf7grace_mem.bam
+samtools index -b sorted_mcf7grace_mem.bam
+
+#check mapping efficiency (bwa mem vs bwa aln)
+/home/sb/programfiles/bamtools/bamtools stats mcf7_grace_mem.bam 
+/home/sb/programfiles/bamtools/bamtools stats mcf7_grace.bam 
+
+#create genome seqeunce dictionary for GATK using picard
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar CreateSequenceDictionary R=/home/sb/genome_data/GRCh38/sequence/hg38.fa O=/home/sb/genome_data/GRCh38/sequence/hg38_reference.dict
+
+
 
