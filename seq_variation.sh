@@ -52,8 +52,16 @@ samtools sort mcf7_grace_mem.bam > sorted_mcf7grace_mem.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar AddOrReplaceReadGroups INPUT=sorted_mcf7grace_mem.bam OUTPUT=sortedmcf7_grace_mem_addRG.bam RGID=HNHCCCCXX RGLB= Merged RGPL=illumina RGPU=HNHCCCCXX RGSM=sample1
 samtools index -b sortedmcf7_grace_mem_addRG.bam
 
-#re-alignment with GATK
- java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T RealignerTargetCreator -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/sortedmcf7_grace_mem_addRG.bam --known /home/sb/programfiles/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz -o forIndelRealigner.intervals
+#re-alignment with GATK - RTC
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T RealignerTargetCreator -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/sortedmcf7_grace_mem_addRG.bam --known /home/sb/programfiles/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz -o forIndelRealigner.intervals
+#re-alignment with GATK - IndelRealigner
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T IndelRealigner -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/sortedmcf7_grace_mem_addRG.bam -known /home/sb/programfiles/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz -targetIntervals forIndelRealigner.intervals -o /home/sb/genome_seq_mcf7/realigned_mcf7.bam
 
+#base recalibration
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T BaseRecalibrator -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/realigned_mcf7.bam -knownSites /home/sb/programfiles/ftp.broadinstitute.org/bundle/hg38/dbsnp_146.hg38.vcf.gz -o recal_mcf7.table
 
+#print reads
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -nct 20 -T PrintReads -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/realigned_mcf7.bam --BQSR recal_mcf7.table -o /home/sb/genome_seq_mcf7/recal_realign_mcf7.bam
+
+#mark duplicates
 
