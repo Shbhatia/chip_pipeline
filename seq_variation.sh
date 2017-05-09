@@ -35,12 +35,6 @@ cat SRR096941_2.fastq.gz SRR096942_2.fastq.gz > mcf7_2.fastq.gz
 #bwa mem
 /home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/mcf7_seq.fq.gz > mcf7_grace_mem.sam
 # -M ensures compatibility with picard
-/home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/ENCFF000QQG.fastq.gz > mcf7_grace_mem1.sam
-/home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/ENCFF000QQI.fastq.gz > mcf7_grace_mem2.sam
-
-
-
-
 
 #samtools get bam format
 samtools view -Sb mcf7_grace_mem.sam > mcf7_grace_mem.bam
@@ -48,11 +42,18 @@ samtools sort mcf7_grace_mem.bam > sorted_mcf7grace_mem.bam
 samtools index -b sorted_mcf7grace_mem.bam
 
 #check mapping efficiency (bwa mem vs bwa aln)
-/home/sb/programfiles/bamtools/bamtools stats mcf7_grace_mem.bam 
-/home/sb/programfiles/bamtools/bamtools stats mcf7_grace.bam 
+/home/sb/programfiles/bamtools/bamtools stats mcf7_grace_mem.bam #mapping efficiency 96.87% (used for rest of analysis)
+/home/sb/programfiles/bamtools/bamtools stats mcf7_grace.bam #mapping efficiency 91.31%
 
 #create genome seqeunce dictionary for GATK using picard
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar CreateSequenceDictionary R=/home/sb/genome_data/GRCh38/sequence/hg38.fa O=/home/sb/genome_data/GRCh38/sequence/hg38_reference.dict
+samtools sort mcf7_grace_mem.bam > sorted_mcf7grace_mem.bam
+#add RG to sorted bam file
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar AddOrReplaceReadGroups INPUT=sorted_mcf7grace_mem.bam OUTPUT=sortedmcf7_grace_mem_addRG.bam RGID=HNHCCCCXX RGLB= Merged RGPL=illumina RGPU=HNHCCCCXX RGSM=sample1
+samtools index -b sortedmcf7_grace_mem_addRG.bam
+
+#re-alignment with GATK
+ java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T RealignerTargetCreator -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/sortedmcf7_grace_mem_addRG.bam --known /home/sb/programfiles/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz -o forIndelRealigner.intervals
 
 
 
