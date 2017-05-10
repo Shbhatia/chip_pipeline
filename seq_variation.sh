@@ -64,4 +64,13 @@ java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T BaseRecalibrator -R /hom
 java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -nct 20 -T PrintReads -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -I /home/sb/genome_seq_mcf7/realigned_mcf7.bam --BQSR recal_mcf7.table -o /home/sb/genome_seq_mcf7/recal_realign_mcf7.bam
 
 #mark duplicates
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates VALIDATION_STRINGENCY=LENIENT I=/home/sb/genome_seq_mcf7/recal_realign_mcf7.bam O=/home/sb/genome_seq_mcf7/recal_realign_nodup_mcf7.bam M=mcf7marked_dup_metrics.txt
+
+#index
+samtools index -b /home/sb/genome_seq_mcf7/recal_realign_nodup_mcf7.bam
+
+#mpileup using samtools
+samtools mpileup -ugf /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/recal_realign_nodup_mcf7.bam > recal_realign_nodup_mcf7.vcf
+/home/sb/programfiles/bcftools/bcftools call --threads 35 -vm -O z -o /home/sb/genome_seq_mcf7/var.raw.bcf
+#
 
