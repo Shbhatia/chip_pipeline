@@ -75,3 +75,22 @@ samtools mpileup -ugf /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/geno
 
 # VCF index
 /home/sb/programfiles/bcftools/tabix -p vcf /home/sb/genome_seq_mcf7/var.raw.bcf.gz
+#select SNPs & INDELS
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T SelectVariants -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -V /home/sb/genome_seq_mcf7/var.raw.vcf.gz -selectType SNP -o /home/sb/genome_seq_mcf7/SNP_var.raw.vcf.gz
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T SelectVariants -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -V /home/sb/genome_seq_mcf7/var.raw.vcf.gz -selectType INDEL -o /home/sb/genome_seq_mcf7/INDEL_var.raw.vcf.gz
+#Filter by quality
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T VariantFiltration -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -V /home/sb/genome_seq_mcf7/SNP_var.raw.vcf.gz --filterExpression "MQ < 40.00" --filterName "MQ" --filterExpression "QD < 2.00" --filterName "QD" --filterExpression "FS > 60.000" --filterName "FS" --filterExpression "MQRankSum < -12.500" --filterName "MQRankSum" --filterExpression "ReadPosRankSum < -8.000" --filterName "ReadPosRankSum" -o /home/sb/genome_seq_mcf7/filtered_snps.vcf
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T VariantFiltration -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -V /home/sb/genome_seq_mcf7/INDEL_var.raw.vcf.gz --filterExpression "QD < 2.00" --filterName "QD" --filterExpression "FS > 200.000" --filterName "FS" --filterExpression "ReadPosRankSum < -20.000" --filterName "ReadPosRankSum" -o /home/sb/genome_seq_mcf7/filtered_indels.vcf
+
+#awk statements
+awk '{if ($7=="FILTER" || $7=="PASS") print $0}' /home/sb/genome_seq_mcf7/filtered_snps.vcf > test1_snps.vcf
+
+#grep
+grep "#" /home/sb/genome_seq_mcf7/filtered_snps.vcf > test1_snps.vcf
+grep -v '#' | grep 'PASS' /home/sb/genome_seq_mcf7/filtered_snps.vcf > test1_snps.vcf
+
+#Merge
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T CombineVariants -R /home/sb/genome_data/GRCh38/sequence/hg38.fa --variant /home/sb/test1_indels.vcf --variant /home/sb/test1_snps.vcf -o /home/sb/genome_seq_mcf7/merged_snpindel.vcf -genotypeMergeOptions UNIQUIFY
+
+#new fasta
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_corrected.fa -L  -V /home/sb/genome_seq_mcf7/merged_snpindel.vcf
