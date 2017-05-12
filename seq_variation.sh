@@ -93,4 +93,4 @@ grep -v '#' | grep 'PASS' /home/sb/genome_seq_mcf7/filtered_snps.vcf > test1_snp
 java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T CombineVariants -R /home/sb/genome_data/GRCh38/sequence/hg38.fa --variant /home/sb/test1_indels.vcf --variant /home/sb/test1_snps.vcf -o /home/sb/genome_seq_mcf7/merged_snpindel.vcf -genotypeMergeOptions UNIQUIFY
 
 #new fasta
-java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_corrected.fa -L  -V /home/sb/genome_seq_mcf7/merged_snpindel.vcf
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_corrected.fa -V /home/sb/genome_seq_mcf7/merged_snpindel.vcf
