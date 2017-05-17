@@ -45,3 +45,9 @@ dds <- DESeqDataSetFromMatrix(countData = cts2,
 dds
 res <- results(dds)
 res
+
+#DESeq2 - LRT test 
+dLRT <- DESeqDataSetFromMatrix(countData = cts2, colData = samp2, design = ~ condition)
+dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+dLRT_res <- results(dLRT)
