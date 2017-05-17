@@ -7,26 +7,6 @@ git clone https://github.com/lh3/bwa.git
 #create bwa index
 bwa index -a bwtsw /home/sb/genome_data/GRCh38/sequence/hg38.fa
 
-#data from GEO
-#rep-1
-wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByExp/sra/SRX/SRX039/SRX039778/SRR096941/SRR096941.sra
-#rep-2
-wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByExp/sra/SRX/SRX039/SRX039779/SRR096942/SRR096942.sra
-
-#exp-2
-wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByExp/sra/SRX/SRX101/SRX101494/SRR353720/SRR353720.sra
-
-#convert to fastq
-fastq-dump --split-files SRR096941.sra
-fastq-dump --split-files SRR096942.sra
-fastq-dump --split-files SRR353720.sra
-
-#zip fastq files
-
-#combine replicates for each read pair
-cat SRR096941_1.fastq.gz SRR096942_1.fastq.gz > mcf7_1.fastq.gz
-cat SRR096941_2.fastq.gz SRR096942_2.fastq.gz > mcf7_2.fastq.gz
-
 #bwa aln
 ./bwa aln -t 20 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/mcf7_seq.fq.gz > mcf7_bwaout.sai
 #bwa samse
@@ -34,9 +14,8 @@ cat SRR096941_2.fastq.gz SRR096942_2.fastq.gz > mcf7_2.fastq.gz
 
 #bwa mem
 /home/sb/programfiles/bwa/bwa mem -M -t 35 /home/sb/genome_data/GRCh38/sequence/hg38.fa /home/sb/genome_seq_mcf7/ENCSR000AHE/mcf7_seq.fq.gz > mcf7_grace_mem.sam
-# -M ensures compatibility with picard
 
-#samtools get bam format
+#samtools - get sorted bam format
 samtools view -Sb mcf7_grace_mem.sam > mcf7_grace_mem.bam
 samtools sort mcf7_grace_mem.bam > sorted_mcf7grace_mem.bam
 samtools index -b sorted_mcf7grace_mem.bam
@@ -94,7 +73,7 @@ grep -v '#' | grep 'PASS' /home/sb/genome_seq_mcf7/filtered_snps.vcf >> test1_sn
 java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T CombineVariants -R /home/sb/genome_data/GRCh38/sequence/hg38.fa --variant /home/sb/test1_indels.vcf --variant /home/sb/test1_snps.vcf -o /home/sb/genome_seq_mcf7/merged_snpindel.vcf -genotypeMergeOptions UNIQUIFY
 
 #new fasta
-java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_corrected.fa -V /home/sb/genome_seq_mcf7/merged_snpindel.vcf
+java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_merged_corrected.fa -V /home/sb/genome_seq_mcf7/merged_snpindel.vcf
 
 #no INDELs corrected FASTA
 java -jar /home/sb/programfiles/GenomeAnalysisTK.jar -T FastaAlternateReferenceMaker -R /home/sb/genome_data/GRCh38/sequence/hg38.fa -o /home/sb/genome_data/MCF7/MCF7_corrected.fa -V /home/sb/genome_seq_mcf7/test1_snps.vcf
