@@ -14,15 +14,17 @@ cat FCC57BPACXX-WHHUMhahEAAARAAPEI-46_L1_2.fq.gz FCC57BPACXX-WHHUMhahEAAARAAPEI-
 /home/sb/programfiles/STAR/source/STAR --runThreadN 20 --genomeDir /home/sb/genome_data/GRCh38/star_index_90 --readFilesIn /home/sb/h2az/rnaseq/sit/FCC57BPACXX-WHHUMhahEAABRAAPEI-47_1.fq.gz /home/sb/h2az/rnaseq/sit/FCC57BPACXX-WHHUMhahEAABRAAPEI-47_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/h2az/star_output/rnaseq/sit/
 
 #samtools - get sorted, bam files from alignment output
-
+samtools view -bS Aligned.out.sam > Aligned.out.bam
+samtools sort Aligned.out.bam > sorted.bam
+samtools index -b sorted.bam
 
 #Rsubread
-data<-featureCounts(c("/home/sb/shainan/rnaseq/staroutput/hep3b_sic/sorted.bam", "/home/sb/shainan/rnaseq/staroutput/hep3b_sik/sorted.bam"),
+data<-featureCounts(c("/home/sb/h2az/star_output/rnaseq/MC/sic_r2_sorted.bam", "/home/sb/h2az/star_output/rnaseq/MT/sit_r2_sorted.bam", "/home/sb/h2az/star_output/rnaseq/sic/sic_r1_sorted.bam", "/home/sb/h2az/star_output/rnaseq/sit/sit_r1_sorted.bam"),
 annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
 isGTFAnnotationFile=TRUE,
 minMQS=10,
 strandSpecific=0,
 isPairedEnd=TRUE,
-nthreads=15,
+nthreads=20,
 GTF.attrType="gene_name"
 )
