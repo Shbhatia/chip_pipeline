@@ -33,26 +33,13 @@ colabel <- read.csv("/home/sb/h2az/h2az_colnames.csv")
 samp2 <- colabel[,-1]
 rownames(samp2) <- colabel[,1]
 
-#make data frames for counts table and sample annotation table
-sic <- data.frame(counts[,1])
-sit <- data.frame(counts[,2])
-cts <- merge(sic, sit, sic2, sit2, by=0, all=TRUE)
-cts2 <- cts[,-1]
-cts2(samp2) <- cts[,1]
-rownames(cts2) <- cts[,1]
-colnames(cts2) <- rownames(samp2)
+colnames(counts) <- rownames(samp2)
 
 #DESeq2
 library("DESeq2")
-dds <- DESeqDataSetFromMatrix(countData = cts2,
-                              colData = samp2,
-                              design = ~ condition)
-dds
-res <- results(dds)
-res
 
 #DESeq2 - LRT test 
-dLRT <- DESeqDataSetFromMatrix(countData = cts2, colData = samp2, design = ~ condition + batch)
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition + batch)
 dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res <- results(dLRT)
