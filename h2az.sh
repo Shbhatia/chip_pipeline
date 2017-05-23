@@ -36,7 +36,7 @@ rownames(samp2) <- colabel[,1]
 #make data frames for counts table and sample annotation table
 sic <- data.frame(counts[,1])
 sit <- data.frame(counts[,2])
-cts <- merge(sic, sit, by=0, all=TRUE)
+cts <- merge(sic, sit, sic2, sit2, by=0, all=TRUE)
 cts2 <- cts[,-1]
 cts2(samp2) <- cts[,1]
 rownames(cts2) <- cts[,1]
