@@ -28,8 +28,6 @@ colnames(counts) <- rownames(samp2)
 library("DESeq2")
 dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition)
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
-dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/james/dLRT_res_RNASeq.txt")
-write.table(assay(dLRT_vsd), "/home/sb/james/dLRT_vsd.txt")
 grep -v "NA" dLRT_res_RNASeq.txt | perl -pe "s/\h/\t/g" - | perl -pe "s/\"//g" | cut -f1,3,6 > 10a_RNASeq_noNA.txt
