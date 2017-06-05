@@ -44,3 +44,7 @@ Genome size calculated (hg38) = 3088286401
 macs2 callpeak -t star_output/ch4_star/new_sort.bam -c star_output/ci_star/new_sort.bam —g 3.08e9 -n h4_sic --nomodel --ext size 147 --broad --q 0.05 --outdir /home/sb/macs/ch4_macs
 macs2 callpeak -t star_output/th4_star/sorted.bam -c star_output/ti_star/sorted.bam --g 3.08e9 -n h4_sic --nomodel --ext size 147  --broad -q 0.05 --outdir /home/sb/macs/th4_macs
 
+
+#create bigwig
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/star_output/ca416_star/new_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/star_output/ca416_star/ca416_seqdepthnorm.bw
+
