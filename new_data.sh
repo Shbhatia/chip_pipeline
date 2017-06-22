@@ -17,3 +17,21 @@ isPairedEnd=TRUE,
 nthreads=20,
 GTF.attrType="gene_name"
 )
+
+counts = data[[1]]
+colabel <- read.csv("/home/sb/h2az_rnaseq/H2AZ_colnames.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT <- DESeq(dLRT, test="LRT", full = ~ batch + condition, reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/h2az_rnaseq/dLRT_res_RNASeq.txt")
+grep -v "NA" dLRT_res_RNASeq.txt | perl -pe "s/\h/\t/g" - | perl -pe "s/\"//g" | cut -f1,3,6 > 10a_RNASeq_noNA.txt
+awk -F"\t" '{if ($2>1) print $0}' RNASeq_noNA.txt | perl -pe "s/\h/\t/g" - > upregulated_lgfc1.bed
+awk -F"\t" '{if ($2<-1) print $0}' RNASeq_noNA.txt | perl -pe "s/\h/\t/g" - > downregulated_lgfc1.bed
+awk -F"\t" '{if ($3<0.05) print $0}' downregulated_lgfc1.bed | perl -pe "s/\h/\t/g" - > downregulated_lgfc1_p0.05.bed
+awk -F"\t" '{if ($3<0.05) print $0}' upregulated_lgfc1.bed | perl -pe "s/\h/\t/g" - > upregulated_lgfc1_p0.05.bed
