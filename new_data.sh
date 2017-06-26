@@ -74,3 +74,6 @@ for i in range(0, len(gene1)):
         if gene1[i] == gene2[n]:
             outfile.write(gene1[i] + "\t" + lgfc1[i] + "\t" + pval1[i] + "\t" + gene2[n] + "\t" + lgfc2[n] + "\t" + pval2[n] + "\n")
 
+#ChIP-Seq data
+#STAR alignment
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_noann --readFilesIn /home/sb/YZ_CHIP/C/FCHHJVCBBXX_L1_wHAPPI051197-53_1.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/YZ_CHIP/star_output/C/ --alignIntronMax 1
