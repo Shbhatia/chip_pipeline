@@ -77,3 +77,11 @@ for i in range(0, len(gene1)):
 #ChIP-Seq data
 #STAR alignment
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_noann --readFilesIn /home/sb/YZ_CHIP/C/FCHHJVCBBXX_L1_wHAPPI051197-53_1.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/YZ_CHIP/star_output/C/ --alignIntronMax 1
+#samtools
+samtools view -bS Aligned.out.sam > Aligned.out.bam
+samtools sort Aligned.out.bam > C_sorted.bam
+samtools index -b C_sorted.bam
+
+#remove duplicates
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/C_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/C/C_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/C/C_sorted_nodup.bam
+
