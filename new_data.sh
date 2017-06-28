@@ -86,7 +86,10 @@ samtools sort Aligned.out.bam > C_sorted.bam
 samtools index -b C_sorted.bam
 
 #remove duplicates
-java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/C_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/C/C_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/C/C_sorted_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/C_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/C/C_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/C/C_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/T_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/T/T_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/T/T_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/CI_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/CI/CI_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/C/CI_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/YZ_CHIP/star_output/TI_dup.txt INPUT=/home/sb/YZ_CHIP/star_output/TI/TI_sorted.bam OUTPUT=/home/sb/YZ_CHIP/star_output/C/TI_nodup.bam
 
 #samtools sort and index 
 samtools sort C_sorted_nodup.bam > C_sort_nodup.bam --threads 10
@@ -96,5 +99,8 @@ samtools index -b C_sort_nodup.bam
 macs2 predictd -t /home/sb/YZ_CHIP/star_output/C/C_sort_nodup.bam -c /home/sb/YZ_CHIP/star_output/CI/CI_sort_nodup.bam —g 3.08e9 -n h2az_sic --broad --q 0.05 --outdir /home/sb/YZ_CHIP/macs/
 
 #bamCoverage
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/C/C_sort_nodup.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/C/C.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/C/C_nodup_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/C/C.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/T/T_nodup_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/T/T.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/CI/CI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/CI/CI.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/TI/TI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/TI/TI.bw
 
