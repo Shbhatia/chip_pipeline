@@ -104,3 +104,10 @@ macs2 predictd -t /home/sb/YZ_CHIP/star_output/C/C_sort_nodup.bam -c /home/sb/YZ
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/CI/CI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/CI/CI.bw
 /home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/TI/TI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/TI/TI.bw
 
+#bamtobed
+bedtools bamtobed -i T_nodup_sorted.bam > T.bed
+sed 's/^/chr/' T.bed > new_T.bed
+grep -v "chrMT" new_T.bed > nomt_T.bed
+
+#diffReps
+diffReps.pl --treatment /home/sb/YZ_CHIP/star_output/T/nomt_T.bed --control /home/sb/YZ_CHIP/star_output/C/nomt_C.bed --report /home/sb/YZ_CHIP/TvsC --chrlen /home/sb/genome_data/GRCh37/hg19.chrom.sizes --btr /home/sb/YZ_CHIP/star_output/TI/nomt_TI.bed --bco /home/sb/YZ_CHIP/star_output/CI/nomt_CI.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
