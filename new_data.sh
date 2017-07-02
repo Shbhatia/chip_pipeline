@@ -46,6 +46,7 @@ awk -F"\t" '{if ($3<0.05) print $0}' upregulated_lgfc1.bed | perl -pe "s/\h/\t/g
 
 #consensusDB
 awk -v col=4 -F '\t' '{$col=gsub(",", "", $col)+1; print $1"\t"$2"\t"$3"\t"$4}' CPDB_pathways_genes.tab > pathway_genenumbers.bed
+awk -v col=6 -F '\t' '{$col=gsub(";", "", $col)+1; print $3"\t"$4"\t"$5"\t"$6}' PATH_DOWN.tab > down_genenumbers.bed
 
 #python script for overlapping genes between siT and siH
 infile1 = open("H2AZ_RNASeq/downregulated_lgfc1_p0.05.bed")
