@@ -103,10 +103,10 @@ samtools index -b C_sort_nodup.bam
 macs2 predictd -t /home/sb/YZ_CHIP/star_output/C/C_sort_nodup.bam -c /home/sb/YZ_CHIP/star_output/CI/CI_sort_nodup.bam —g 3.08e9 -n h2az_sic --broad --q 0.05 --outdir /home/sb/YZ_CHIP/macs/
 
 #bamCoverage
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/C/C_nodup_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/C/C.bw
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/T/T_nodup_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/T/T.bw
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/CI/CI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/CI/CI.bw
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/TI/TI_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -e 150 -o /home/sb/YZ_CHIP/star_output/TI/TI.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/C/C_nodup_sorted.bam --binSize 1 --normalizeTo1x 2451960000 -e 150 -o /home/sb/YZ_CHIP/star_output/C/C_new.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/T/T_nodup_sorted.bam --binSize 1 --normalizeTo1x 2451960000 -e 150 -o /home/sb/YZ_CHIP/star_output/T/T_new.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/CI/CI_sorted.bam --binSize 1 --normalizeTo1x 2451960000 -e 150 -o /home/sb/YZ_CHIP/star_output/CI/CI_new.bw
+/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/YZ_CHIP/star_output/TI/TI_sorted.bam --binSize 1 --normalizeTo1x 2451960000 -e 150 -o /home/sb/YZ_CHIP/star_output/TI/TI_new.bw
 
 #bamtobed
 bedtools bamtobed -i T_nodup_sorted.bam > T.bed
@@ -115,3 +115,11 @@ grep -v "chrMT" new_T.bed > nomt_T.bed
 
 #diffReps
 diffReps.pl --treatment /home/sb/YZ_CHIP/star_output/T/nomt_T.bed --control /home/sb/YZ_CHIP/star_output/C/nomt_C.bed --report /home/sb/YZ_CHIP/TvsC --chrlen /home/sb/genome_data/GRCh37/hg19.chrom.sizes --btr /home/sb/YZ_CHIP/star_output/TI/nomt_TI.bed --bco /home/sb/YZ_CHIP/star_output/CI/nomt_CI.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+
+#computeMatrix
+computeMatrix reference-point --referencePoint TSS -b 2000 -a 2000 -R /home/sb/YZ_CHIP/TSS_4kb_nogene.bed -S /home/sb/YZ_CHIP/star_output/C/C.bw -o /home/sb/YZ_CHIP/C_matrix.gz
+
+bam.files <- c("/home/sb/YZ_CHIP/star_output/C/C_nodup_sorted.bam", "/home/sb/YZ_CHIP/star_output/T/T_nodup_sorted.bam", "/home/sb/YZ_CHIP/star_output/CI/CI_nodup_sorted.bam", "/home/sb/YZ_CHIP/star_output/TI/TI_nodup_sorted.bam")
+binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
+
+normfacs <- normOffsets(binned)
