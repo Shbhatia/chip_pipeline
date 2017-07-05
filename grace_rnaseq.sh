@@ -49,3 +49,15 @@ dLRT$condition <- relevel(dLRT$condition, ref="untreated")
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_4h.txt")
+
+
+more knowncanonical_hg38.bed | awk -F"\t" '{if ($5 == "+") {print $1"\t"($2-150000)"\t"($2+150000)"\t"$4} if ($5 == "-") {print $1"\t"($3-150000)"\t"($3+150000)"\t"$4}}' - | awk -F"\t" '{if ($2 > 0) print $0}' - | perl -pe "s/\h/\t/g" - > tss_300kb_window.bed
+
+bedtools intersect -a bedintersect_input_up.bed -b tss_300kb_window.bed -wb > intersect_300kb.bed
+
+cut -f1,2,3,7 intersect_300kb.bed > peak2gene_hg38.bed
+
+grep -v "Metazoa" peak2gene_hg38.bed > peak2gene_hg38_new.bed
+
+more intersect_300kb.bed | grep -w -f up_24h_genenames_lgfc1.bed | cut -f1,2,3,7 - > DGE_300kb_intersect.bed
+
