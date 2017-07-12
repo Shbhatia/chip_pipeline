@@ -1,0 +1,4 @@
+#mark duplicates - Picard
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/Ac-0/ac0_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/Ac-0/ac0_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/Ac-0/ac0_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/Ac-4/ac4_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/Ac-4/ac4_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/Ac-4/ac4_nodup.bam
+java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/Ac-4/ac4_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/Ac-24/ac24_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/Ac-24/ac24_nodup.bam
