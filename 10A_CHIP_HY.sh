@@ -14,3 +14,4 @@ java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMO
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/H3-0/h30_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/H3-0/h30_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/H3-0/h30_nodup.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/H3-4/h34_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/H3-4/h34_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/H3-4/h34_nodup.bam
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/10A_CHIP/star_output/H3-24/h324_duplicates.txt INPUT=/home/sb/10A_CHIP/star_output/H3-24/h324_sorted.bam OUTPUT=/home/sb/10A_CHIP/star_output/H3-24/h324_nodup.bam
+
