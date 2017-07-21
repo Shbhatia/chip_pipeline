@@ -87,3 +87,10 @@ perl ./STAR-Fusion --genome_lib_dir /home/sb/programfiles/STAR-Fusion-v1.0.0/GRC
 --readFilesCommand zcat \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /home/sb/shweta/12_files/11/star_output/
+
+./FusionInspector --fusions /home/sb/shweta/fusions_shC.txt \
+                --genome_lib /home/sb/programfiles/STAR-Fusion-v1.0.0/GRCh38_gencode_v23_CTAT_lib/ \
+                --left_fq /home/sb/shweta/12_files/9/FCHCCY2BBXX-HKHUMmijEAAERAAPEI-207_1.fq.gz --right_fq /home/sb/shweta/12_files/9/FCHCCY2BBXX-HKHUMmijEAAERAAPEI-207_2.fq.gz \
+                --out_dir shC_fusioninspector \
+                --out_prefix shC \
+                --prep_for_IGV
