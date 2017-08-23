@@ -123,3 +123,6 @@ bam.files <- c("/home/sb/YZ_CHIP/star_output/C/C_nodup_sorted.bam", "/home/sb/YZ
 binned <- windowCounts(bam.files, bin=TRUE, width=10000, param=param)
 
 normfacs <- normOffsets(binned)
+
+
+barplot(x[order(x[2])2],col="salmon",horiz=T,las=2,names.arg=rnames[order(x[2])],main=“KEGG Pathway enrichment for overlapping downreg. genes", border=NA,xlab="Percentage Coverage of Total Genes in Pathway (%)",cex.names=0.5)
