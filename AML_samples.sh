@@ -37,3 +37,9 @@ perl ./STAR-Fusion_new.pl --genome_lib_dir /home/sb/programfiles/STAR-Fusion-v1.
              --left_fq /home/sb/transsplicing/AML/RHB4409-NoIndex_S8_L008_R1_001.fastq.gz \
              --right_fq /home/sb/transsplicing/AML/RHB4409-NoIndex_S8_L008_R2_001.fastq.gz \
              --output_dir /home/sb/transsplicing/AML/RHB4409-NoIndex_S8_L008_FUSION/
+
+perl ./STAR-Fusion_new.pl --genome_lib_dir /home/sb/programfiles/STAR-Fusion-v1.0.0/GRCh38_gencode_v23_CTAT_lib/ \
+             --left_fq /home/sb/transsplicing/AML/CD34_AML_BM_3_S8_L008_R1_001.fastq.gz \
+             --right_fq /home/sb/transsplicing/AML/CD34_AML_BM_3_S8_L008_R2_001.fastq.gz \
+             --output_dir /home/sb/transsplicing/AML/CD34_AML_BM_3_S8_L008_FUSION/            
+             
