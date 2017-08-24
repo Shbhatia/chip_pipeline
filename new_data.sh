@@ -126,3 +126,10 @@ normfacs <- normOffsets(binned)
 
 
 barplot(x[order(x[2])2],col="salmon",horiz=T,las=2,names.arg=rnames[order(x[2])],main=“KEGG Pathway enrichment for overlapping downreg. genes", border=NA,xlab="Percentage Coverage of Total Genes in Pathway (%)",cex.names=0.5)
+
+
+
+
+
+
+boxplot((x[,3]/x[,1]),(x[,4]/x[,1]),outline=0,border=c("blue","goldenrod4"),width=c(4,4),names=c("siControl","siH2AZ"),ylab="Read counts (VST)")
