@@ -78,3 +78,6 @@ hep3bdesign = data.frame(hep3bcounttable)
 
 
 
+/home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shianan_sep17/DMSO_1.fq.gz /home/sb/shianan_sep17/DMSO_2.fq.gz --outFileNamePrefix /home/sb/shianan_sep17/HEP3B_DMSO/
+
+
