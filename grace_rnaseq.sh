@@ -92,3 +92,4 @@ more intersect_300kb.bed | grep -w -f up_24h_genenames_lgfc1.bed | cut -f1,2,3,7
 
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/grace_10A_rnaseq/B7_0_1.fq.gz /home/sb/grace_10A_rnaseq/B7_0_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/grace_10A_rnaseq/MCF7_0h_R2/
 
+l
