@@ -44,9 +44,9 @@ rownames(samp2) <- colabel[,1]
 colnames(counts) <- rownames(samp2)
 
 library("DESeq2")
-dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition)
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition + batch)
 dLRT$condition <- relevel(dLRT$condition, ref="untreated")
-dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
+dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_4h.txt")
 
@@ -92,4 +92,47 @@ more intersect_300kb.bed | grep -w -f up_24h_genenames_lgfc1.bed | cut -f1,2,3,7
 
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/grace_10A_rnaseq/B7_0_1.fq.gz /home/sb/grace_10A_rnaseq/B7_0_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/grace_10A_rnaseq/MCF7_0h_R2/
 
-l
+data<-featureCounts(c("/home/sb/grace_rnaseq/star_output/MCF7_0H_R1/0h_sortedR1.bam", "/home/sb/grace_rnaseq/star_output/MCF7_0h_R2/MCF7_0hR2_sorted.bam", "/home/sb/grace_rnaseq/star_output/MCF7_4H_R1/4h_sortedR1.bam", "/home/sb/grace_rnaseq/star_output/MCF7_4h_R2/MCF7_4hR2_sorted.bam"), 
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/grace_rnaseq/star_output/grace_colnames4h_replicates.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_4h_replicates.txt")
+
+
+data<-featureCounts(c("/home/sb/grace_rnaseq/star_output/MCF7_0H_R1/0h_sortedR1.bam", "/home/sb/grace_rnaseq/star_output/MCF7_0h_R2/MCF7_0hR2_sorted.bam", "/home/sb/grace_rnaseq/star_output/MCF7_24H_R1/24h_sortedR1.bam", "/home/sb/grace_rnaseq/star_output/MCF7_24h_R2/MCF7_24hR2_sorted.bam"), 
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/grace_rnaseq/star_output/grace_colnames24h_replicates.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_24h_replicates.txt")
