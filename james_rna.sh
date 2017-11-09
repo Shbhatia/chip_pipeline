@@ -32,3 +32,10 @@ dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/james/dLRT_res_RNASeq_relevel.txt")
 grep -v "NA" dLRT_res_RNASeq_relevel.txt | perl -pe "s/\h/\t/g" - | perl -pe "s/\"//g" | cut -f1,3,6 > 10a_RNASeq_noNA_relevel.txt
+
+#replicate 2 and HCT116 RNA-Seq
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siC1_1_1.fq.gz /home/sb/james/rep2/siC1_1_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSICR2/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siT12_1_1_1.fq.gz /home/sb/james/rep2/siT12_1_1_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSIT12R2/
+
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siC_116_1.fq.gz /home/sb/james/rep2/siC_116_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSICR1/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siT12_116_1.fq.gz /home/sb/james/rep2/siT12_116_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSIT12R1/
