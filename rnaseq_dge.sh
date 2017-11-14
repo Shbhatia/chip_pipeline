@@ -82,4 +82,46 @@ hep3bdesign = data.frame(hep3bcounttable)
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shianan_sep17/HEP3B_rep1/Hep3BDMSO_HWN2YCCXX_L5_1.fq.gz /home/sb/shianan_sep17/HEP3B_rep1/Hep3BDMSO_HWN2YCCXX_L5_2.fq.gz --outFileNamePrefix /home/sb/shianan_sep17/HEP3B_DMSO_R1/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_150  --readFilesIn /home/sb/shianan_sep17/HEP3B_rep1/Hep3BJQ1_HWN2YCCXX_L5_1.fq.gz /home/sb/shianan_sep17/HEP3B_rep1/Hep3BJQ1_HWN2YCCXX_L5_2.fq.gz --outFileNamePrefix /home/sb/shianan_sep17/HEP3B_JQ1_R1/
 
+data<-featureCounts(c("/home/sb/shainan/rnaseq/staroutput/HEP3B_DMSO_R1/DMSOR1_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/HEP3B_DMSO_R2/DMSOR2_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/HEP3B_JQ1_R1/JQ1R1_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/HEP3B_JQ1_R2/JQ1R2_sorted.bam"), 
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/shainan/rnaseq/staroutput/JQ1colnames_replicates.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
 
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/shainan/rnaseq/HEP3B_JQ1_results_replicates.txt")
+
+data<-featureCounts(c("/home/sb/shainan/rnaseq/staroutput/hep3b_sic/SICR1_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/HEP3B_sic_R2/SICR2_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/hep3b_sik/SITR1_sorted.bam", "/home/sb/shainan/rnaseq/staroutput/HEP3B_sit_R2/SITR2_sorted.bam"), 
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/shainan/rnaseq/staroutput/SIKcolnames_replicates.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/shainan/rnaseq/HEP3B_SIK_results_replicates.txt")
