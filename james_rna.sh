@@ -40,6 +40,8 @@ grep -v "NA" dLRT_res_RNASeq_relevel.txt | perl -pe "s/\h/\t/g" - | perl -pe "s/
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siC_116_1.fq.gz /home/sb/james/rep2/siC_116_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSICR1/
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siT12_116_1.fq.gz /home/sb/james/rep2/siT12_116_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/HCTSIT12R1/
 
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siCEMT_10A_1.fq.gz /home/sb/james/rep2/siCEMT_10A_1.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/10ASICR2/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/rep2/siTRIP12EMT_10A_1.fq.gz /home/sb/james/rep2/siTRIP12EMT_10A_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/rep2/10ASIT12R2/
 
 data<-featureCounts(c("/home/sb/james/rep2/HCTSICR1/HCTSICR1_sorted.bam", "/home/sb/james/rep2/HCTSICR2/HCTSIC_sortedR2.bam", "/home/sb/james/rep2/HCTSIT12R1/HCTSIT12_sortedR1.bam", "/home/sb/james/rep2/HCTSIT12R2/HCTSIT12_sortedR2.bam"), 
 annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
