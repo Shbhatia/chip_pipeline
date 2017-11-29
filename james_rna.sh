@@ -64,3 +64,26 @@ dLRT$condition <- relevel(dLRT$condition, ref="untreated")
 dLRT <- DESeq(dLRT, test="LRT", full=~batch + condition, reduced=~batch)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/shainan/rnaseq/HEP3B_SIK_results_replicates.txt")
+
+data<-featureCounts(c("/home/sb/james/star/sic/10a_sic_sortedR1.bam", "/home/sb/james/rep2/10ASICR2/10ASICR2_sorted.bam", "/home/sb/james/star/sit/10a_sit_sortedR1.bam", "/home/sb/james/rep2/10ASIT12R2/10ASIT12R2_sorted.bam"), 
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/10ASIT12colnames_replicates.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ batch + condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", full=~batch + condition, reduced=~batch)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/shainan/rnaseq/HEP3B_SIK_results_replicates.txt")
+
