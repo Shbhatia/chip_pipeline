@@ -136,3 +136,56 @@ dLRT$condition <- relevel(dLRT$condition, ref="untreated")
 dLRT <- DESeq(dLRT, test="LRT", reduced=~batch)
 dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_24h_replicates.txt")
+
+
+
+
+
+
+
+data<-featureCounts(c("/home/sb/grace_10A_rnaseq/10A_0h/10A0h_sorted.bam", "/home/sb/grace_10A_rnaseq/10A_4h/10A4h_sorted.bam"),
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/grace_10A_rnaseq/grace_colnames_10A4h.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_10A4hvs0h.txt")
+
+
+
+
+data<-featureCounts(c("/home/sb/grace_10A_rnaseq/10A_0h/10A0h_sorted.bam", "/home/sb/grace_10A_rnaseq/10A_24h/10A24h_sorted.bam"),
+annot.ext="/home/sb/genome_data/GRCh38/annotation/Homo_sapiens.GRCh38.77.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=10,
+strandSpecific=0,
+isPairedEnd=TRUE,
+nthreads=20,
+GTF.attrType="gene_name"
+)
+counts = data[[1]]
+colabel <- read.csv("/home/sb/grace_10A_rnaseq/grace_colnames10A24h.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+colnames(counts) <- rownames(samp2)
+
+library("DESeq2")
+dLRT <- DESeqDataSetFromMatrix(countData = counts, colData = samp2, design = ~ condition)
+dLRT$condition <- relevel(dLRT$condition, ref="untreated")
+dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
+dLRT_res <- results(dLRT)
+write.table(dLRT_res, "/home/sb/grace_rnaseq/dLRT_res_RNASeq_10A24hvs0h.txt")
