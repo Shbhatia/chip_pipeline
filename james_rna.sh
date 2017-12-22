@@ -88,11 +88,27 @@ dLRT_res <- results(dLRT)
 write.table(dLRT_res, "/home/sb/shainan/rnaseq/HEP3B_SIK_results_replicates.txt")
 
 #DEXSeq - checking for differential splicing - 10A siC vs siT12
-samtoools sort -n Aligned.out.bam > 10a_sic_sortedR1_n.bam --threads 20
+samtools sort -n Aligned.out.bam > 10a_sic_sortedR1_n.bam --threads 20
 
 python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_count.py /home/sb/dexseq/Homo_sapiens_DEXSeq.chr.gff /home/sb/james/star/sic/10a_sic_sortedR1_n.bam /home/sb/james/dexseq/10A_untreatedR1.txt -p yes -f bam
 python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_count.py /home/sb/dexseq/Homo_sapiens_DEXSeq.chr.gff /home/sb/james/rep2/10ASICR2/10ASICR2_sorted_n.bam /home/sb/james/dexseq/10A_untreatedR2.txt -p yes -f bam
 python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_count.py /home/sb/dexseq/Homo_sapiens_DEXSeq.chr.gff /home/sb/james/star/sic/10a_sit_sortedR1_n.bam /home/sb/james/dexseq/10A_treatedR1.txt -p yes -f bam
 python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_count.py /home/sb/dexseq/Homo_sapiens_DEXSeq.chr.gff /home/sb/james/rep2/10ASICR2/10ASIT12R2_sorted_n.bam /home/sb/james/dexseq/10A_treatedR2.txt -p yes -f bam
 
-
+indir = file.path("/home/sb/james/dexseq/")
+countFiles = list.files(indir, pattern = "txt$", full.names = "TRUE")
+flattenedFile = list.files(indir, pattern="gff$", full.names=TRUE)
+sampleTable = read.csv("/home/sb/james/dexseq/10A_dexseq_colnames.csv")
+suppressPackageStartupMessages( library( "DEXSeq" ) )
+#feed data into R package
+dxd = DEXSeqDataSetFromHTSeq(countFiles, sampleData=sampleTable, design= ~ sample + exon + condition:exon, flattenedfile=flattenedFile )
+#seq depth normalisation
+dxd = estimateSizeFactors( dxd )
+#estimating variance of biological replicates
+dxd = estimateDispersions( dxd )
+#differential exon usage
+dxd = testForDEU( dxd )
+#calculate log fold changes
+dxd = estimateExonFoldChanges( dxd, fitExpToVar="condition")
+#store results in a variable dxr1
+dxr1 = DEXSeqResults( dxd )
