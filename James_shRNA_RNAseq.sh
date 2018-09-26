@@ -65,15 +65,15 @@ awk -F"\t" '{if ($2<-1) print $0}' RNASeq_noNA.txt | perl -pe "s/\h/\t/g" - > do
 awk -F"\t" '{if ($3<0.05) print $0}' downregulated_lgfc1.bed | perl -pe "s/\h/\t/g" - > downregulated_lgfc1_p0.05.bed
 awk -F"\t" '{if ($3<0.05) print $0}' upregulated_lgfc1.bed | perl -pe "s/\h/\t/g" - > upregulated_lgfc1_p0.05.bed
 
-down=read.table("../17_feb/741_genes.txt")
+down=read.table("../overlap/down_overlap_genenames.bed")
 down=down$V1
 down.ix=which(rownames(x) %in% as.character(down))
 
-up=read.table("../UPPPP.txt")
+up=read.table("../overlap/up_overlap_genenames.bed")
 up=up$V1
 up.ix=which((rownames(x) %in% as.character(up)) & abs(x$log2FoldChange)>1 )
 
-postscript("volcano_TSSpeak_regions.ps", width= 50, height= 50)
+postscript("volcano_shT12_1.ps", width= 50, height= 50)
  smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
  p.ix= x$log2FoldChange>1 & x$padj<0.05
  points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
