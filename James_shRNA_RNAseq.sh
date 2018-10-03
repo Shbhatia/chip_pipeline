@@ -76,31 +76,31 @@ up=up$V1
 up.ix=which((rownames(x) %in% as.character(up)))
 
 pdf(file = "volcano_shT12_1a.pdf", width= 10, height= 10)
- smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
- p.ix= x$log2FoldChange>1 & x$padj<0.05
- points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
- p.ix= x$log2FoldChange<(-1) & x$padj<0.05
- points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="darkblue", pch = 16)
+ smoothScatter(x$log2FoldChange,-log10(x$pvalue),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
+ p.ix= x$log2FoldChange>1 & x$pvalue<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$pvalue[p.ix]),col="goldenrod4", pch = 16)
+ p.ix= x$log2FoldChange<(-1) & x$pvalue<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$pvalue[p.ix]),col="darkblue", pch = 16)
  abline(v=1, col ='grey',lty = 2);
  abline(v=(-1), col ='grey',lty = 2);
  abline(h=-log10(.05), col ='grey',lty = 2)
- points(x$log2FoldChange[up.ix],-log10(x$padj[up.ix]),pch = 4,col="red")
- points(x$log2FoldChange[down.ix],-log10(x$padj[down.ix]), pch = 4,col="red")
+ points(x$log2FoldChange[up.ix],-log10(x$pvalue[up.ix]),pch = 4,col="red")
+ points(x$log2FoldChange[down.ix],-log10(x$pvalue[down.ix]), pch = 4,col="red")
 
 
 dev.off()
 
 pdf(file = "volcano_shT12_2a.pdf", width= 10, height= 10)
- smoothScatter(x$log2FoldChange,-log10(x$padj),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
- p.ix= x$log2FoldChange>1 & x$padj<0.05
- points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="goldenrod4", pch = 16)
- p.ix= x$log2FoldChange<(-1) & x$padj<0.05
- points(x$log2FoldChange[p.ix],-log10(x$padj[p.ix]),col="darkblue", pch = 16)
+ smoothScatter(x$log2FoldChange,-log10(x$pvalue),xlab=expression('Log'[2]*' Fold Change'),ylab=expression('-Log'[10]*' P-values'))
+ p.ix= x$log2FoldChange>1 & x$pvalue<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$pvalue[p.ix]),col="goldenrod4", pch = 16)
+ p.ix= x$log2FoldChange<(-1) & x$pvalue<0.05
+ points(x$log2FoldChange[p.ix],-log10(x$pvalue[p.ix]),col="darkblue", pch = 16)
  abline(v=1, col ='grey',lty = 2);
  abline(v=(-1), col ='grey',lty = 2);
  abline(h=-log10(.05), col ='grey',lty = 2)
- points(x$log2FoldChange[up.ix],-log10(x$padj[up.ix]),pch = 4,col="red")
- points(x$log2FoldChange[down.ix],-log10(x$padj[down.ix]), pch = 4,col="red")
+ points(x$log2FoldChange[up.ix],-log10(x$pvalue[up.ix]),pch = 4,col="red")
+ points(x$log2FoldChange[down.ix],-log10(x$pvalue[down.ix]), pch = 4,col="red")
 
 
 dev.off()
