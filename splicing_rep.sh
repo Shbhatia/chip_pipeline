@@ -1,0 +1,3 @@
+#map to genome index using STAR
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/shrna/shresh/MCF_s_1.fq.gz /home/sb/james/shrna/shresh/MCF_s_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/shrna/shresh/MCF_s60_1.fq.gz /home/sb/james/shrna/shresh/MCF_s60_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/
