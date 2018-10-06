@@ -106,4 +106,11 @@ pdf(file = "volcano_shT12_2a.pdf", width= 10, height= 10)
 dev.off()
 
 
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shC/R1/shc_R1_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shC/R1/shc_R1_coverage.bw 
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shC/R2/shc_R2_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shC/R2/shc_R2_coverage.bw
 
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shT12_1/R1/sht12_1_R1_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shT12_1/R1/sht12_1_R1_coverage.bw
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shT12_1/R2/sht12_1_R2_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shT12_1/R2/sht12_1_R2_coverage.bw
+
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shT12_2/R1/sht12_2_R1_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shT12_2/R1/sht12_2_R1_coverage.bw
+bamCoverage -b /home/sb/james/shrna/sht12/staralign/shT12_2/R2/sht12_2_R2_sorted.bam -o /home/sb/james/shrna/sht12/staralign/shT12_2/R2/sht12_2_R2_coverage.bw
