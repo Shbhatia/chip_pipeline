@@ -9,10 +9,12 @@ python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_c
 python /home/sb/R/x86_64-pc-linux-gnu-library/3.3/DEXSeq/python_scripts/dexseq_count.py /home/sb/dexseq/new_dexseq/Homo_sapiens.GRCh38.94.DEXSeq.chr.gff /home/sb/star_output/mt_star_output/sorted_n.bam MT_2fb.txt -p yes -f bam -s no -r name
 
 #running locally
-indir = file.path("/Users/sbhatia/Documents/sjdata/alternative_splicing/alt_splicing_star/dexseq/dexseq")
+indir = file.path("/home/sb/james/shrna/shresh/staralign/MSCV/")
 countFiles = list.files(indir, pattern = "txt$", full.names = "TRUE")
 flattenedFile = list.files(indir, pattern="gff$", full.names="TRUE")
-sampleTable = read.csv("/Users/sbhatia/Documents/sjdata/alternative_splicing/alt_splicing_star/dexseq/dexseq/h2az_colnames.csv")
+
+sampleTable = data.frame(row.names = c( "MC_1fb", "MT_1fb", "MC_2fb", "MT_2fb"), condition = c("control", "knockdown", "control", "knockdown"), libType = c("paired-end", "paired-end", "paired-end", "paired-end" ) )
+
 suppressPackageStartupMessages( library( "DEXSeq" ) )
 #feed data into R package
 dxd = DEXSeqDataSetFromHTSeq(countFiles, sampleData=sampleTable, design= ~ sample + exon + condition:exon, flattenedfile=flattenedFile )
@@ -26,3 +28,6 @@ dxd = testForDEU( dxd )
 dxd = estimateExonFoldChanges( dxd, fitExpToVar="condition")
 #store results in a variable dxr1
 dxr1 = DEXSeqResults( dxd )
+
+
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150 --readFilesIn /home/sb/james/shrna/shresh/MCF_s_1.fq.gz /home/sb/james/shrna/shresh/MCF_s_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/MC/
