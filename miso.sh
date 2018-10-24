@@ -1,3 +1,6 @@
+#genome index
+mkdir star_index_150_ucsc/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 25 --runMode genomeGenerate --genomeDir star_index_150_ucsc/ --genomeFastaFiles sequence/hg38.fa --sjdbGTFfile annotation/ucsc/ensGene1.gtf --sjdbOverhang 150
 #star run
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/mscv/sic/MC_1.fastq   /home/sb/mcf10a_rnaseq/mscv/sic/MC_2.fastq     --outFileNamePrefix /home/sb/star_output/mc_star_ucsc/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/mscv/sit/MT_1.fastq   /home/sb/mcf10a_rnaseq/mscv/sit/MT_2.fastq     --outFileNamePrefix /home/sb/star_output/mt_star_ucsc/
@@ -7,6 +10,9 @@
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 18   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/str_kd/sit/KT_1.fastq   /home/sb/mcf10a_rnaseq/str_kd/sit/KT_2.fastq     --outFileNamePrefix /home/sb/star_output/kt_star_ucsc/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 16   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/e292k/sic/EC_1.fastq   /home/sb/mcf10a_rnaseq/e292k/sic/EC_2.fastq     --outFileNamePrefix /home/sb/star_output/ec_star_ucsc/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 16   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/e292k/sit/ET_1.fastq   /home/sb/mcf10a_rnaseq/e292k/sit/ET_2.fastq     --outFileNamePrefix /home/sb/star_output/et_star_ucsc/
+#new data mapped to index - 150
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/james/shrna/shresh/MCF_s_1.fq.gz /home/sb/james/shrna/shresh/MCF_s_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/MC/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/james/shrna/shresh/MCF_s60_1.fq.gz /home/sb/james/shrna/shresh/MCF_s60_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/MT/
 
 
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 16   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/wt/sic/WC_1.fastq   /home/sb/mcf10a_rnaseq/wt/sic/WC_2.fastq     --outFileNamePrefix /home/sb/star_output/wc_star_ucsc/
