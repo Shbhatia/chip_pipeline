@@ -19,7 +19,7 @@ programfiles/bwa/bwa mem -M -t 30 genome_data/GRCh38/sequence/GRCh38_r77.all.fa 
 
 #MarkDuplicates - PICARD
 java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/DRIP/C101HW18101721/raw_data/SIC_CYTO_duplicates.txt INPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_sorted.bam OUTPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_nodup.bam
-java -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/DRIP/C101HW18101721/raw_data/SIC_CYTO_IN_duplicates.txt INPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_IN_sorted.bam OUTPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_IN_nodup.bam
+java -Xmx10G -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=/home/sb/DRIP/C101HW18101721/raw_data/SIC_CYTO_IN_duplicates.txt INPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_IN_sorted.bam OUTPUT=/home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_IN_nodup.bam TMP_DIR=/home/sb/tmp
 
 
 #create bw files - DEEPTOOLS
