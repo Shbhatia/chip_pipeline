@@ -23,4 +23,7 @@ java -Xmx10G -jar /home/sb/programfiles/picard/build/libs/picard.jar MarkDuplica
 
 
 #create bw files - DEEPTOOLS
-/home/sb/programfiles/deepTools/bin/bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_sorted.bam --binSize 10 --normalizeTo1x 3088286401 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIC_CYTO.bw
+bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_CYTO_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIC_CYTO.bw
+bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_CYTO_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIT_CYTO.bw
+bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIC_NUC.bw
+bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIT_NUC.bw
