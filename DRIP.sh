@@ -32,3 +32,9 @@ bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_sorted_
 
 #call peaks - MACS2
 macs2 callpeak -t /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_Nsorted_sambamba.bam -c /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_IN_Nsorted_sambamba.bam -f BAMPE —g 3.08e9 -n SIC_NUC --broad --q 0.05 --outdir /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/macs2output
+
+
+bedtools bamtobed -bedpe -i SIC_NUC_Nsorted_sambamba.bam > SIC_NUC_Nsorted_sambamba.bed
+cut -f1,2,6,7,8,9,10 SIC_NUC_Nsorted_sambamba.bed > SIC_NUC_diffinput.bed
+sed 's/^/chr/' SIC_NUC_diffinput.bed > SIC_NUC_diffinput_nochr.bed
+grep -v "chrMT" SIC_NUC_diffinput_nochr.bed > SIC_NUC_diffinput_nochr_nomt.bed
