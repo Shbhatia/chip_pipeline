@@ -31,4 +31,4 @@ bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_sorted_
 #sort by name
 
 #call peaks - MACS2
-macs2 callpeak -t /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/star_output/sorted_n.bam -c /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Input-1/star_output/sorted_n.bam -f BAMPE —g 3.08e9 -n h3k27ac_0h --broad --q 0.05 --outdir /home/sb/grace/chip/cdts-wh.genomics.cn/F16FTSAPHT1209_HUMbgsC/Clean/Ac-1/macs_out
+macs2 callpeak -t /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_Nsorted_sambamba.bam -c /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_IN_Nsorted_sambamba.bam -f BAMPE —g 3.08e9 -n SIC_NUC --broad --q 0.05 --outdir /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/macs2output
