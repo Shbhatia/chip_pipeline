@@ -34,7 +34,10 @@ bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_sorted_
 macs2 callpeak -t /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_Nsorted_sambamba.bam -c /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_IN_Nsorted_sambamba.bam -f BAMPE —g 3.08e9 -n SIC_NUC --broad --q 0.05 --outdir /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/macs2output
 
 
-bedtools bamtobed -bedpe -i SIC_NUC_Nsorted_sambamba.bam > SIC_NUC_Nsorted_sambamba.bed
+bedtools bamtobed -i SIC_NUC_Nsorted_sambamba.bam > SIC_NUC_Nsorted_sambamba.bed
 cut -f1,2,6,7,8,9,10 SIC_NUC_Nsorted_sambamba.bed > SIC_NUC_diffinput.bed
-sed 's/^/chr/' SIC_NUC_diffinput.bed > SIC_NUC_diffinput_nochr.bed
-grep -v "chrMT" SIC_NUC_diffinput_nochr.bed > SIC_NUC_diffinput_nochr_nomt.bed
+sed 's/^/chr/' SIC_NUC_diffinput.bed > SIC_NUC_diffinput_chr.bed
+grep -v "chrMT" SIC_NUC_diffinput_chr.bed > SIC_NUC_diffinput_nochr_nomt.bed
+
+diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/NUC-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+
