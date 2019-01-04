@@ -35,9 +35,32 @@ macs2 callpeak -t /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_Nsorted
 
 
 bedtools bamtobed -i SIC_NUC_Nsorted_sambamba.bam > SIC_NUC_Nsorted_sambamba.bed
-cut -f1,2,6,7,8,9,10 SIC_NUC_Nsorted_sambamba.bed > SIC_NUC_diffinput.bed
-sed 's/^/chr/' SIC_NUC_diffinput.bed > SIC_NUC_diffinput_chr.bed
+sed 's/^/chr/' SIC_NUC_Nsorted_sambamba.bed > SIC_NUC_diffinput_chr.bed
 grep -v "chrMT" SIC_NUC_diffinput_chr.bed > SIC_NUC_diffinput_nochr_nomt.bed
 
-diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/NUC-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_NUC_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_NUC_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/NUC-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_NUC_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_NUC_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 
+diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/CYTO-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+
+
+grep -v '^#' NUC-TvsC | grep -v "Chrom" - | cut -f1,2,3,11,12,14 - | perl -pe "s/\h/\t/g" - > NUC-TvsC_selected.bed
+grep -v '^#' CYTO-TvsC | grep -v "Chrom" - | cut -f1,2,3,11,12,14 - | perl -pe "s/\h/\t/g" - > CYTO-TvsC_selected.bed
+grep -v -w "inf" CYTO-TvsC_selected.bed > CYTO-TvsC_selected_noinf.bed
+
+awk -F"\t" '{if ($5>1) print $0}' CYTO-TvsC_selected_noinf.bed | perl -pe "s/\h/\t/g" - > CYTO-TvsC_up_lgfc1.bed
+awk -F"\t" '{if ($6<0.01) print $0}' CYTO-TvsC_up_lgfc1.bed | perl -pe "s/\h/\t/g" - > CYTO-TvsC_up_lgfc1_padj0.01.bed
+
+awk -F"\t" '{if ($5>1) print $0}' NUC-TvsC_selected.bed | perl -pe "s/\h/\t/g" - > NUC-TvsC_up_lgfc1.bed
+awk -F"\t" '{if ($6<0.01) print $0}' NUC-TvsC_up_lgfc1.bed | perl -pe "s/\h/\t/g" - > NUC-TvsC_up_lgfc1_padj0.01.bed
+
+awk -F"\t" '{if ($5<-1) print $0}' CYTO-TvsC_selected_noinf.bed | perl -pe "s/\h/\t/g" - > CYTO-TvsC_down_lgfc1.bed
+awk -F"\t" '{if ($6<0.01) print $0}' CYTO-TvsC_down_lgfc1.bed | perl -pe "s/\h/\t/g" - > CYTO-TvsC_down_lgfc1_padj0.01.bed
+
+awk -F"\t" '{if ($5<-1) print $0}' NUC-TvsC_selected.bed | perl -pe "s/\h/\t/g" - > NUC-TvsC_down_lgfc1.bed
+awk -F"\t" '{if ($6<0.01) print $0}' NUC-TvsC_down_lgfc1.bed | perl -pe "s/\h/\t/g" - > NUC-TvsC_down_lgfc1_padj0.01.bed
+
+
+
+#homer annotate peaks
+source ~/.bashrc_profile
+annotatePeaks.pl NUC_up.bed hg38 > NUC_up_homerannot.txt -annStats NUC_up_stats.txt
