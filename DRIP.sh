@@ -64,3 +64,5 @@ awk -F"\t" '{if ($6<0.01) print $0}' NUC-TvsC_down_lgfc1.bed | perl -pe "s/\h/\t
 #homer annotate peaks
 source ~/.bashrc_profile
 annotatePeaks.pl NUC_up.bed hg38 > NUC_up_homerannot.txt -annStats NUC_up_stats.txt
+#extract gene IDs of intronic differential RNA-DNA hybrids
+grep "intron" CYTO_down_homerannot_gtf.txt | cut -f9 | sed 's/.*(\(.*\))/\1/' | cut -d',' -f1 > CYTO_down_intron_geneid.txt
