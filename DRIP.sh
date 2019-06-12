@@ -43,6 +43,12 @@ diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfi
 diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/CYTO-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
 
 
+
+
+
+
+
+
 grep -v '^#' NUC-TvsC | grep -v "Chrom" - | cut -f1,2,3,11,12,14 - | perl -pe "s/\h/\t/g" - > NUC-TvsC_selected.bed
 grep -v '^#' CYTO-TvsC | grep -v "Chrom" - | cut -f1,2,3,11,12,14 - | perl -pe "s/\h/\t/g" - > CYTO-TvsC_selected.bed
 grep -v -w "inf" CYTO-TvsC_selected.bed > CYTO-TvsC_selected_noinf.bed
@@ -66,3 +72,13 @@ source ~/.bashrc_profile
 annotatePeaks.pl NUC_up.bed hg38 > NUC_up_homerannot.txt -annStats NUC_up_stats.txt
 #extract gene IDs of intronic differential RNA-DNA hybrids
 grep "intron" CYTO_down_homerannot_gtf.txt | cut -f9 | sed 's/.*(\(.*\))/\1/' | cut -d',' -f1 > CYTO_down_intron_geneid.txt
+
+
+
+
+#Rep2
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIC_CYTO_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIC_CYTO_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIC_CYTO.sam
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIT_CYTO_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIT_CYTO_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIT_CYTO.sam
+
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIC_NUC_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIC_NUC_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIC_NUC.sam
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIT_NUC_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIT_NUC_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIT_NUC.sam
