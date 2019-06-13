@@ -82,3 +82,7 @@ grep "intron" CYTO_down_homerannot_gtf.txt | cut -f9 | sed 's/.*(\(.*\))/\1/' | 
 
 /home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIC_NUC_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIC_NUC_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIC_NUC.sam
 /home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIT_NUC_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIT_NUC_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIT_NUC.sam
+
+
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIC_CYTO_IN_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIC_CYTO_IN_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIC_CYTO_IN.sam
+/home/sb/programfiles/bwa/bwa mem -M -t 25 /home/sb/genome_data/GRCh38/sequence/GRCh38_r77.all.fa /home/sb/DRIP_R2/A1311/raw_data/SIT_CYTO_IN_1.fq.gz /home/sb/DRIP_R2/A1311/raw_data/SIC_CYTO_IN_2.fq.gz > /home/sb/DRIP_R2/A1311/raw_data/align/SIT_CYTO_IN.sam
