@@ -99,3 +99,10 @@ sambamba markdup -r SIC_NUC_sorted.bam SIC_NUC_sorted_sambamba.bam -t 10
 sambamba markdup -r SIT_NUC_sorted.bam SIT_NUC_sorted_sambamba.bam -t 10
 
 
+sambamba markdup -r SIC_CYTO_IN_sorted.bam SIC_CYTO_IN_sorted_sambamba.bam -t 20
+
+sambamba markdup -r SIT_CYTO_IN_sorted.bam SIT_CYTO_IN_sorted_sambamba.bam -t 20
+
+sambamba markdup -r SIC_NUC_IN_sorted.bam SIC_NUC_IN_sorted_sambamba.bam -t 20
+
+sambamba markdup -r SIT_NUC_IN_sorted.bam SIT_NUC_IN_sorted_sambamba.bam -t 20
