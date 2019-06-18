@@ -106,3 +106,10 @@ sambamba markdup -r SIT_CYTO_IN_sorted.bam SIT_CYTO_IN_sorted_sambamba.bam -t 20
 sambamba markdup -r SIC_NUC_IN_sorted.bam SIC_NUC_IN_sorted_sambamba.bam -t 20
 
 sambamba markdup -r SIT_NUC_IN_sorted.bam SIT_NUC_IN_sorted_sambamba.bam -t 20
+
+
+bedtools bamtobed -i SIT_CYTO_sorted_sambamba.bam | sed 's/^/chr/' - | grep -v "chrMT" > SIT_CYTO_sorted_sambamba.bed
+
+diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_NUC_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_NUC_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/NUC-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_NUC_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_NUC_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
+
+diffReps.pl --treatment /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_diffinput_nochr_nomt.bed --control /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_diffinput_nochr_nomt.bed --report /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/CYTO-TvsC --chrlen /home/sb/genome_data/GRCh38/hg38.chrom.sizes --btr /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIT_CYTO_IN_diffinput_nochr_nomt.bed --bco /home/sb/DRIP/C101HW18101721/raw_data/aligned/bamtobedfiles/SIC_CYTO_IN_diffinput_nochr_nomt.bed --meth gt --nsd broad --noanno --nohs --frag 0 --nproc 17
