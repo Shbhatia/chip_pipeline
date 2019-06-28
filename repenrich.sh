@@ -49,4 +49,17 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 #Time searching: 00:40:11
 #Overall time: 00:40:11
 
+#sb@sjlab2:~$ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/sb/10A-rnaseq/mscv_sit_multimap.fastq -1 /home/sb/10A-rnaseq/mscv_sit/MT_1.fastq -2 /home/sb/10A-rnaseq/mscv_sit/MT_2.fastq /home/sb/10A-rnaseq/mscv_sit_unique.sam
+#Time loading reference: 00:00:07
+#Time loading forward index: 00:00:14
+#Time loading mirror index: 00:00:15
+#Seeded quality full-index search: 00:50:02
+# reads processed: 29550414
+# reads with at least one reported alignment: 10847443 (36.71%)
+# reads that failed to align: 16009613 (54.18%)
+# reads with alignments suppressed due to -m: 2693358 (9.11%)
+#Reported 10847443 paired-end alignments to 1 output stream(s)
+#Time searching: 00:50:38
+#Overall time: 00:50:38
+
 
