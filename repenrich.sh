@@ -66,7 +66,7 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/10a_sic_repenrich 10a_sic /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/10asic_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/10asic_multimap_1.fastq /home/sb/10A-rnaseq/10asic_unique.bam --cpus 25 --pairedend TRUE
 python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/10a_sit_repenrich 10a_sit /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/10asit_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/10asit_multimap_1.fastq /home/sb/10A-rnaseq/10asit_unique.bam --cpus 10 --pairedend TRUE
 
-python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/mscv_sic_repenrich mscv_sic /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/mscv_sic_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/mscv_sic_multimap_2.fastq /home/sb/10A-rnaseq/mscv_sic_unique.bam --cpus 16 --pairedend TRUE
+python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/mscv_sic_repenrich mscv_sic /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/mscv_sic_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/mscv_sic_multimap_2.fastq /home/sb/10A-rnaseq/mscv_sic_unique.bam --cpus 10 --pairedend TRUE
 
 
 #edgeR
