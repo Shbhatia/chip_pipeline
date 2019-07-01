@@ -81,6 +81,7 @@ python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repe
 
 # Setup - Install and load edgeR
 source("http://bioconductor.org/biocLite.R")
+biocLite("edgeR")
 
 library('edgeR')
 
@@ -88,16 +89,16 @@ library('edgeR')
 # counts <- read.csv(file = "counts.csv")
 
 # In the case of seperate outputs, load the RepEnrich results - fraction counts
-10a_sic <- read.delim('/home/sb/repenrich/10a_sic_repenrich/10a_sic_fraction_counts.txt', header=FALSE)
-10a_sit <- read.delim('/home/sb/repenrich/10a_sit_repenrich/10a_sit_fraction_counts.txt', header=FALSE)
-mscv_sic <- read.delim('/home/sb/repenrich/mscv_sic_repenrich/mscv_sic_fraction_counts.txt', header=FALSE)
-mscv_sit <- read.delim('/home/sb/repenrich/mscv_sit_repenrich/mscv_sit_fraction_counts.txt', header=FALSE)
+sicr1 <- read.delim('10a_sic_fraction_counts.txt', header=FALSE)
+sitr1 <- read.delim('10a_sit_fraction_counts.txt', header=FALSE)
+sicr2 <- read.delim('mscv_sic_fraction_counts.txt', header=FALSE)
+sitr2 <- read.delim('mscv_sit_fraction_counts.txt', header=FALSE)
 
 #' Build a counts table
 counts <- data.frame(
-  row.names = 10a_sic[,1],
-  10a_sic = 10a_sic[,4], mscv_sic = mscv_sic[,4],
-  10a_sit = 10a_sit[,4], mscv_sit = mscv_sit[,4])
+  row.names = sicr1[,1],
+  sicr1 = sicr1[,4], sicr2 = sicr2[,4],
+  sitr1 = sitr1[,4], sitr2 = sitr2[,4])
 
 # Build a meta data object. I am comparing young, old, and veryold mice.
 # I manually input the total mapping reads for each sample.
@@ -142,12 +143,10 @@ results <- matrix(nrow=dim(counts)[1],ncol=0)
 logfc <- matrix(nrow=dim(counts)[1],ncol=0)
 
 # Make the comparisons for the GLM
-my.contrasts <- makeContrasts(
-	sit_sic = sit – sic)
+my.contrasts <- makeContrasts(sit_sic = sit – sic, levels = design)
 
 # Define the contrasts used in the comparisons
-allcontrasts = c(
-	"sit_sic")
+allcontrasts = c("sit_sic")
 
 # Conduct a for loop that will do the fitting of the GLM for each comparison
 # Put the results into the results objects
@@ -163,8 +162,8 @@ for(current_contrast in allcontrasts) {
 
 # Add the repeat types back into the results.
 # We should still have the same order as the input data
-results$class <- sic[,2]
-results$type <- sic[,3]
+results$class <- sicr1[,2]
+results$type <- sicr1[,3]
 
 # Sort the results table by the logFC
 results <- results[with(results, order(-abs(logFC.sit_sic))), ]
@@ -184,7 +183,7 @@ for(current_contrast in allcontrasts) {
   # Plot the repeat types
   types <- with(results, reorder(type, -logFC, median))
   boxplot(logFC ~ types, data=results, outline=FALSE, horizontal=TRUE,
-          las=2, xlab="log(Fold Change)", main=current_contrast)
+          las=2, xlab="log(Fold Change)", main=current_contrast, cex.axis=0.3)
   abline(v=0)
 }
 
