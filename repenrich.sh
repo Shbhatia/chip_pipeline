@@ -193,8 +193,8 @@ for(current_contrast in allcontrasts) {
 # repeat classes - rob
 for(current_contrast in allcontrasts) {
   logFC <- results[, paste0("logFC.", current_contrast)]
-classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
+  classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
   par(mar=c(6,10,4,1))
-  boxplot(logFC ~ as.vector(classes), data=results, outline=FALSE, horizontal=TRUE,
+  boxplot(logFC ~ classes, data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
   abline(v=0)}
