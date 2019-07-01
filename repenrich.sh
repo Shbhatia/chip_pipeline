@@ -167,6 +167,8 @@ results$type <- sicr1[,3]
 
 # Sort the results table by the logFC
 results <- results[with(results, order(-abs(logFC.sit_sic))), ]
+results <- cbind(results,rownames(results))
+colnames(results)[7]="repeats"
 
 # Save the results
 write.table(results, 'results.txt', quote=FALSE, sep="\t")
@@ -187,3 +189,12 @@ for(current_contrast in allcontrasts) {
   abline(v=0)
 }
 
+
+# repeat classes - rob
+for(current_contrast in allcontrasts) {
+  logFC <- results[, paste0("logFC.", current_contrast)]
+classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
+  par(mar=c(6,10,4,1))
+  boxplot(logFC ~ as.vector(classes), data=results, outline=FALSE, horizontal=TRUE,
+          las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
+  abline(v=0)}
