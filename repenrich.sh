@@ -18,6 +18,7 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 #Reported 10175194 paired-end alignments to 1 output stream(s)
 #Time searching: 01:28:21
 #Overall time: 01:28:21
+# #of reads processed - #of reads that failed to align = 11780998
 
 #Mapping stats:
 #sb@sjlab2:~$ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/sb/10A-rnaseq/10asit_multimap.fastq -1 /home/sb/10A-rnaseq/10a_sit/FCC57BPACXX-WHHUMhahEAABRAAPEI-47_1.fq -2 /home/sb/10A-rnaseq/10a_sit/FCC57BPACXX-WHHUMhahEAABRAAPEI-47_2.fq /home/sb/10A-rnaseq/10asit_unique.sam
@@ -32,6 +33,7 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 #Reported 11042118 paired-end alignments to 1 output stream(s)
 #Time searching: 01:31:45
 #Overall time: 01:31:45
+# #of reads processed - #of reads that failed to align = 12926586
 
 bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/sb/10A-rnaseq/mscv_sic_multimap.fastq -1 /home/sb/10A-rnaseq/mscv_sic/MC_1.fastq -2 /home/sb/10A-rnaseq/mscv_sic/MC_2.fastq /home/sb/10A-rnaseq/mscv_sic_unique.sam
 bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/sb/10A-rnaseq/mscv_sit_multimap.fastq -1 /home/sb/10A-rnaseq/mscv_sit/MT_1.fastq -2 /home/sb/10A-rnaseq/mscv_sit/MT_2.fastq /home/sb/10A-rnaseq/mscv_sit_unique.sam
@@ -49,6 +51,8 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 #Time searching: 00:40:11
 #Overall time: 00:40:11
 
+# #of reads processed - #of reads that failed to align = 13557104
+
 #sb@sjlab2:~$ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/sb/10A-rnaseq/mscv_sit_multimap.fastq -1 /home/sb/10A-rnaseq/mscv_sit/MT_1.fastq -2 /home/sb/10A-rnaseq/mscv_sit/MT_2.fastq /home/sb/10A-rnaseq/mscv_sit_unique.sam
 #Time loading reference: 00:00:07
 #Time loading forward index: 00:00:14
@@ -62,11 +66,14 @@ bowtie /home/sb/repenrich/hg38/hg38 -p 20 -t -m 1 -S --chunkmbs 400 --max /home/
 #Time searching: 00:50:38
 #Overall time: 00:50:38
 
+# #of reads processed - #of reads that failed to align = 13540801
+
 #repenrich
 python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/10a_sic_repenrich 10a_sic /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/10asic_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/10asic_multimap_1.fastq /home/sb/10A-rnaseq/10asic_unique.bam --cpus 25 --pairedend TRUE
 python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/10a_sit_repenrich 10a_sit /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/10asit_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/10asit_multimap_1.fastq /home/sb/10A-rnaseq/10asit_unique.bam --cpus 10 --pairedend TRUE
 
 python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/mscv_sic_repenrich mscv_sic /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/mscv_sic_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/mscv_sic_multimap_2.fastq /home/sb/10A-rnaseq/mscv_sic_unique.bam --cpus 10 --pairedend TRUE
+python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repeatmasker_clean.txt /home/sb/repenrich/mscv_sit_repenrich mscv_sit /home/sb/repenrich/RepEnrich_setup_hg38 /home/sb/10A-rnaseq/mscv_sit_multimap_1.fastq --fastqfile2 /home/sb/10A-rnaseq/mscv_sit_multimap_2.fastq /home/sb/10A-rnaseq/mscv_sit_unique.bam --cpus 10 --pairedend TRUE
 
 
 #edgeR
@@ -74,30 +81,23 @@ python /home/sb/programfiles/RepEnrich/RepEnrich.py /home/sb/repenrich/hg38_repe
 
 # Setup - Install and load edgeR
 source("http://bioconductor.org/biocLite.R")
-biocLite("edgeR")
+
 library('edgeR')
 
 # In the case of a pre-assembled file of the fraction count output do the following:
 # counts <- read.csv(file = "counts.csv")
 
 # In the case of seperate outputs, load the RepEnrich results - fraction counts
-young_r1 <- read.delim('young_r1_fraction_counts.txt', header=FALSE)
-young_r2 <- read.delim('young_r2_fraction_counts.txt', header=FALSE)
-young_r3 <- read.delim('young_r3_fraction_counts.txt', header=FALSE)
-old_r1 <- read.delim('old_r1_fraction_counts.txt', header=FALSE)
-old_r2 <- read.delim('old_r2_fraction_counts.txt', header=FALSE)
-old_r3 <- read.delim('old_r3_fraction_counts.txt', header=FALSE)
-v_old_r1 <- read.delim('veryold_r1_fraction_counts.txt', header=FALSE)
-v_old_r2 <- read.delim('veryold_r2_fraction_counts.txt', header=FALSE)
-v_old_r3 <- read.delim('veryold_r3_fraction_counts.txt', header=FALSE)
+10a_sic <- read.delim('/home/sb/repenrich/10a_sic_repenrich/10a_sic_fraction_counts.txt', header=FALSE)
+10a_sit <- read.delim('/home/sb/repenrich/10a_sit_repenrich/10a_sit_fraction_counts.txt', header=FALSE)
+mscv_sic <- read.delim('/home/sb/repenrich/mscv_sic_repenrich/mscv_sic_fraction_counts.txt', header=FALSE)
+mscv_sit <- read.delim('/home/sb/repenrich/mscv_sit_repenrich/mscv_sit_fraction_counts.txt', header=FALSE)
 
 #' Build a counts table
 counts <- data.frame(
-  row.names = young_r1[,1],
-  young_r1 = young_r1[,4], young_r2 = young_r2[,4], young_r3 = young_r3[,4],
-  old_r1 = old_r1[,4], old_r2 = old_r2[,4], old_r3 = old_r3[,4],
-  v_old_r1 = v_old_r1[,4], v_old_r2 = v_old_r2[,4], v_old_r3 = v_old_r3[,4]
-)
+  row.names = 10a_sic[,1],
+  10a_sic = 10a_sic[,4], mscv_sic = mscv_sic[,4],
+  10a_sit = 10a_sit[,4], mscv_sit = mscv_sit[,4])
 
 # Build a meta data object. I am comparing young, old, and veryold mice.
 # I manually input the total mapping reads for each sample.
@@ -105,8 +105,8 @@ counts <- data.frame(
 # # of reads processed - # reads that failed to align
 meta <- data.frame(
 	row.names=colnames(counts),
-	condition=c("young","young","young","old","old","old","veryold","veryold","veryold"),
-	libsize=c(24923593,28340805,21743712,16385707,26573335,28131649,34751164,37371774,28236419)
+	condition=c("sic","sic","sit","sit"),
+	libsize=c(11780998,13557104,12926586,13540801)
 )
 
 # Define the library size and conditions for the GLM
@@ -143,18 +143,11 @@ logfc <- matrix(nrow=dim(counts)[1],ncol=0)
 
 # Make the comparisons for the GLM
 my.contrasts <- makeContrasts(
-	veryold_old = veryold – old,
-	veryold_young = veryold – young,
-	old_young = old – young,
-	levels = design
-)
+	sit_sic = sit – sic)
 
 # Define the contrasts used in the comparisons
 allcontrasts = c(
-	"veryold_old",
-	"veryold_young",
-	"old_young"
-)
+	"sit_sic")
 
 # Conduct a for loop that will do the fitting of the GLM for each comparison
 # Put the results into the results objects
@@ -170,11 +163,11 @@ for(current_contrast in allcontrasts) {
 
 # Add the repeat types back into the results.
 # We should still have the same order as the input data
-results$class <- young_r1[,2]
-results$type <- young_r1[,3]
+results$class <- sic[,2]
+results$type <- sic[,3]
 
 # Sort the results table by the logFC
-results <- results[with(results, order(-abs(logFC.old_young))), ]
+results <- results[with(results, order(-abs(logFC.sit_sic))), ]
 
 # Save the results
 write.table(results, 'results.txt', quote=FALSE, sep="\t")
