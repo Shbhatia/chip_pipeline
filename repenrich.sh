@@ -107,13 +107,15 @@ counts <- data.frame(
 meta <- data.frame(
 	row.names=colnames(counts),
 	condition=c("sic","sic","sit","sit"),
-	libsize=c(11780998,13557104,12926586,13540801)
+	libsize=c(11780998,13557104,12926586,13540801),
+	rep=c("r1","r2","r1","r2")
 )
 
 # Define the library size and conditions for the GLM
 libsize <- meta$libsize
 condition <- factor(meta$condition)
-design <- model.matrix(~0+condition)
+rep <- factor(meta$rep)
+design <- model.matrix(~rep+condition)
 colnames(design) <- levels(meta$condition)
 
 # Build a DGE object for the GLM
@@ -198,3 +200,11 @@ for(current_contrast in allcontrasts) {
   boxplot(logFC ~ classes, data=results, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
   abline(v=0)}
+  
+  
+counts = data[[1]]
+colabel <- read.csv("repenirch_mcf10a_colnames.csv")
+samp2 <- colabel[,-1]
+rownames(samp2) <- colabel[,1]
+
+colnames(counts) <- rownames(samp2)
