@@ -181,7 +181,7 @@ for(current_contrast in allcontrasts) {
   # Plot the repeat classes
   classes <- with(results, reorder(class, -logFC, median))
   par(mar=c(6,10,4,1))
-  boxplot(logFC ~ classes, data=results, outline=FALSE, horizontal=TRUE,
+  boxplot(logFC ~ classes, data=x, outline=FALSE, horizontal=TRUE,
           las=2, xlab="log(Fold Change)", main=current_contrast)
   abline(v=0)
   # Plot the repeat types
@@ -192,19 +192,10 @@ for(current_contrast in allcontrasts) {
 }
 
 
-# repeat classes - rob
-for(current_contrast in allcontrasts) {
-  logFC <- results[, paste0("logFC.", current_contrast)]
-  classes <- with(results[results[, paste0("FDR.", current_contrast)]<0.05,], reorder(class, -logFC, median))
-  par(mar=c(6,10,4,1))
-  boxplot(logFC ~ classes, data=results, outline=FALSE, horizontal=TRUE,
-          las=2, xlab="log2(Fold Change)", main=paste("Class",current_contrast,"FDR 5%") )
-  abline(v=0)}
-  
-  
-counts = data[[1]]
-colabel <- read.csv("repenirch_mcf10a_colnames.csv")
-samp2 <- colabel[,-1]
-rownames(samp2) <- colabel[,1]
+#input from DESeq2 - make boxplot from classes vs logfc - only FDR 5% or less repeats)
 
-colnames(counts) <- rownames(samp2)
+x <- read.table("DGErepeats_type_class_lgfc1_padj0.05.txt", header = FALSE, sep = "\t")
+colnames(x) <- c("Type", "logFC", "padj", "Class")
+par(mar=c(6,10,4,1))
+boxplot(logFC ~ Class, data=x, outline=FALSE, horizontal=TRUE,las=2, xlab="log(Fold Change)")
+abline(v=0)
