@@ -14,6 +14,12 @@ mkdir star_index_150_ucsc/
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/james/shrna/shresh/MCF_s_1.fq.gz /home/sb/james/shrna/shresh/MCF_s_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/MC/
 /home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/james/shrna/shresh/MCF_s60_1.fq.gz /home/sb/james/shrna/shresh/MCF_s60_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/james/shrna/shresh/staralign/MSCV/MT/
 
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/splicing/A10_W_sC_1.fq.gz /home/sb/splicing/A10_W_sC_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/splicing/MSCV/WC/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/splicing/A10_W_sP_1.fq.gz /home/sb/splicing/A10_W_sP_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/splicing/MSCV/WT/
+
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/splicing/A10_K_sC_1.fq.gz /home/sb/splicing/A10_K_sC_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/splicing/MSCV/KC/
+/home/sb/programfiles/STAR/source/STAR --runThreadN 18 --genomeDir /home/sb/genome_data/GRCh38/star_index_150_ucsc --readFilesIn /home/sb/splicing/A10_K_sP_1.fq.gz /home/sb/splicing/A10_K_sP_2.fq.gz --readFilesCommand zcat --outFileNamePrefix /home/sb/splicing/MSCV/KT/
+
 
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 16   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/wt/sic/WC_1.fastq   /home/sb/mcf10a_rnaseq/wt/sic/WC_2.fastq     --outFileNamePrefix /home/sb/star_output/wc_star_ucsc/
 /home/sb/programfiles/STAR/source/STAR   --runThreadN 16   --genomeDir /home/sb/genome_data/GRCh38/star_index_100_ucsc  --readFilesIn /home/sb/mcf10a_rnaseq/wt/sit/WT_1.fastq   /home/sb/mcf10a_rnaseq/wt/sit/WT_2.fastq     --outFileNamePrefix /home/sb/star_output/wt_star_ucsc/
@@ -44,6 +50,8 @@ python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-le
 
 python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-len /home/sb/star_output/wcr_star_ucsc/sorted.bam,/home/sb/star_output/wtr_star_ucsc/sorted.bam  /home/sb/genome_data/GRCh38/annotation/ucsc/const_exons/ensGene1.min_1000.const_exons.gff --output-dir /home/sb/genome_data/GRCh38/annotation/ucsc/pe_tools/wcrwtr
 
+python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-len /home/sb/splicing/MSCV/MC/sorted.bam,/home/sb/splicing/MSCV/MT/sorted.bam  /home/sb/genome_data/GRCh38/annotation/ucsc/const_exons/ensGene1.min_1000.const_exons.gff --output-dir /home/sb/genome_data/GRCh38/annotation/ucsc/pe_tools/mcmt_r2
+
 #MISO run
 #SE events
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/star_output/mc_star_ucsc/sorted.bam --output-dir /home/sb/miso/SE_pe/mc_out_pe/ —-read-len 101 —-paired-end 174.5 52.5
@@ -69,6 +77,11 @@ miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_S
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/star_output/nc_star_ucsc/sorted.bam --output-dir /home/sb/miso/nc_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
 
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/star_output/nt_star_ucsc/sorted.bam --output-dir /home/sb/miso/SE_pe/nt_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
+
+#R2
+python /home/sb/programfiles/misopy-0.5.3/misopy/run_miso.py --compute-genes-from-file "/home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events" /home/sb/splicing/MSCV/MC/sorted.bam /home/sb/splicing/SE_pe/mc_R2_out/ --read-len 150  --paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/MC/sorted.bam --output-dir /home/sb/miso/SE_pe/mc_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/MC/sorted.bam 
 
 #MXE events
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/star_output/mc_star_ucsc/sorted.bam --output-dir /home/sb/miso/MXE_pe/mc_out_pe/ —-read-len 101 —-paired-end 174.5 52.5
