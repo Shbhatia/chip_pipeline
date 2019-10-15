@@ -52,6 +52,10 @@ python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-le
 
 python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-len /home/sb/splicing/MSCV/MC/sorted.bam,/home/sb/splicing/MSCV/MT/sorted.bam  /home/sb/genome_data/GRCh38/annotation/ucsc/const_exons/ensGene1.min_1000.const_exons.gff --output-dir /home/sb/genome_data/GRCh38/annotation/ucsc/pe_tools/mcmt_r2
 
+python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-len /home/sb/splicing/MSCV/WC/sorted.bam,/home/sb/splicing/MSCV/WT/sorted.bam  /home/sb/genome_data/GRCh38/annotation/ucsc/const_exons/ensGene1.min_1000.const_exons.gff --output-dir /home/sb/genome_data/GRCh38/annotation/ucsc/pe_tools/wcwt_r2
+
+python /home/sb/programfiles/misopy-0.5.3/misopy/pe_utils.py --compute-insert-len /home/sb/splicing/MSCV/KC/sorted.bam,/home/sb/splicing/MSCV/KT/sorted.bam  /home/sb/genome_data/GRCh38/annotation/ucsc/const_exons/ensGene1.min_1000.const_exons.gff --output-dir /home/sb/genome_data/GRCh38/annotation/ucsc/pe_tools/kckt_r2
+
 #MISO run
 #SE events
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/star_output/mc_star_ucsc/sorted.bam --output-dir /home/sb/miso/SE_pe/mc_out_pe/ —-read-len 101 —-paired-end 174.5 52.5
@@ -79,9 +83,13 @@ miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_S
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/star_output/nt_star_ucsc/sorted.bam --output-dir /home/sb/miso/SE_pe/nt_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
 
 #R2
-python /home/sb/programfiles/misopy-0.5.3/misopy/run_miso.py --compute-genes-from-file "/home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events" /home/sb/splicing/MSCV/MC/sorted.bam /home/sb/splicing/SE_pe/mc_R2_out/ --read-len 150  --paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/MC/sorted.bam --output-dir /home/sb/miso/SE_pe/mc_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
-miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/MC/sorted.bam 
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/MT/sorted.bam --output-dir /home/sb/miso/SE_pe/mt_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/WC/sorted.bam --output-dir /home/sb/miso/SE_pe/wc_R2_out/ —-read-len 150 —-paired-end 272.3 57.5 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/WT/sorted.bam --output-dir /home/sb/miso/SE_pe/wt_R2_out/ —-read-len 150 —-paired-end 272.3 57.5 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/KC/sorted.bam --output-dir /home/sb/miso/SE_pe/kc_R2_out/ —-read-len 150 —-paired-end 277.3 58.6 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_SE_events/ /home/sb/splicing/MSCV/KT/sorted.bam --output-dir /home/sb/miso/SE_pe/kt_R2_out/ —-read-len 150 —-paired-end 277.3 58.6 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
 
 #MXE events
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/star_output/mc_star_ucsc/sorted.bam --output-dir /home/sb/miso/MXE_pe/mc_out_pe/ —-read-len 101 —-paired-end 174.5 52.5
@@ -107,6 +115,11 @@ miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_M
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/star_output/nc_star_ucsc/sorted.bam --output-dir /home/sb/miso/MXE_pe/nc_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
 
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/star_output/nt_star_ucsc/sorted.bam --output-dir /home/sb/miso/MXE_pe/nt_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
+
+
+#R2
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/splicing/MSCV/MC/sorted.bam --output-dir /home/sb/miso/MXE_pe/mc_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_MXE_events/ /home/sb/splicing/MSCV/MT/sorted.bam --output-dir /home/sb/miso/MXE_pe/mt_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
 
 #A3SS events
 
@@ -148,6 +161,14 @@ summarize_miso --summarize-samples /home/sb/miso/SE_pe/et_out_pe /home/sb/miso/S
 summarize_miso --summarize-samples /home/sb/miso/SE_pe/nc_out_pe /home/sb/miso/SE_pe/nc_out_pe_sum
 summarize_miso --summarize-samples /home/sb/miso/SE_pe/nt_out_pe /home/sb/miso/SE_pe/nt_out_pe_sum
 
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/mc_R2_out_sum
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mt_R2_out /home/sb/miso/SE_pe/mt_R2_out_sum
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/wc_R2_out_sum
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/wt_R2_out_sum
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/kc_R2_out_sum
+summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/kt_R2_out_sum
+
+
 #compare to get differential isoforms
 compare_miso --compare-samples /home/sb/miso/SE_pe/mc_out_pe /home/sb/miso/SE_pe/mt_out_pe /home/sb/miso/SE_pe/mcmt_comparisons/
 compare_miso --compare-samples /home/sb/miso/SE_pe/wc_out_pe /home/sb/miso/SE_pe/wt_out_pe /home/sb/miso/SE_pe/wcwt_comparisons/
@@ -155,6 +176,9 @@ compare_miso --compare-samples /home/sb/miso/SE_pe/nc_out_pe /home/sb/miso/SE_pe
 compare_miso --compare-samples /home/sb/miso/SE_pe/kc_out_pe /home/sb/miso/SE_pe/kt_out_pe /home/sb/miso/SE_pe/kckt_comparisons/
 compare_miso --compare-samples /home/sb/miso/SE_pe/ec_out_pe /home/sb/miso/SE_pe/et_out_pe /home/sb/miso/SE_pe/ecet_comparisons/
 compare_miso --compare-samples /home/sb/miso/SE_pe/wcr_out_pe /home/sb/miso/SE_pe/wtr_out_pe /home/sb/miso/SE_pe/wcrwtr_comparisons/
+
+
+compare_miso --compare-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/mt_R2_out /home/sb/miso/SE_pe/mcmt_R2_comparisons/
 
 compare_miso --compare-samples /home/sb/miso/MXE_pe/mc_out_pe /home/sb/miso/MXE_pe/mt_out_pe /home/sb/miso/MXE_pe/mcmt_comparisons/
 compare_miso --compare-samples /home/sb/miso/MXE_pe/wc_out_pe /home/sb/miso/MXE_pe/wt_out_pe /home/sb/miso/MXE_pe/wcwt_comparisons/
