@@ -193,3 +193,6 @@ filter_events --filter nc_out_pe_vs_nt_out_pe.miso_bf --num-inc 1 --num-exc 1 --
 filter_events --filter kc_out_pe_vs_kt_out_pe.miso_bf --num-inc 1 --num-exc 1 --num-sum-inc-exc 10 --delta-psi 0.20 --bayes-factor 10 --output-dir kckt_filtered/
 filter_events --filter ec_out_pe_vs_et_out_pe.miso_bf --num-inc 1 --num-exc 1 --num-sum-inc-exc 10 --delta-psi 0.20 --bayes-factor 10 --output-dir ecet_filtered/
 filter_events --filter wcr_out_pe_vs_wtr_out_pe.miso_bf --num-inc 1 --num-exc 1 --num-sum-inc-exc 10 --delta-psi 0.20 --bayes-factor 10 --output-dir wcrwtr_filtered/
+
+filter_events --filter /home/sb/miso/SE_pe/mcmt_R2_comparisons/mc_R2_out_vs_mt_R2_out/bayes-factors/mc_R2_out_vs_mt_R2_out.miso_bf --num-inc 1 --num-exc 1 --num-sum-inc-exc 10 --delta-psi 0.20 --bayes-factor 10 --output-dir mcmt_R2_filtered/
+filter_events --filter /home/sb/miso/SE_pe/wtkt_R2_comparisons/wt_R2_out_vs_kt_R2_out/bayes-factors/wt_R2_out_vs_kt_R2_out.miso_bf --num-inc 1 --num-exc 1 --num-sum-inc-exc 10 --delta-psi 0.20 --bayes-factor 10 --output-dir wtkt_R2_filtered/
