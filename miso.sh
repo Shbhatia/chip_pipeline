@@ -147,6 +147,11 @@ miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_A
 
 miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_A3SS_events/ /home/sb/star_output/nt_star_ucsc/sorted.bam --output-dir /home/sb/miso/A3SS_pe/nt_out_pe/ —-read-len 101 —-paired-end 181.1 55.0
 
+#R2
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_A3SS_events/ /home/sb/splicing/MSCV/MC/sorted.bam --output-dir /home/sb/miso/A3SS_pe/mc_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+
+miso —-run /home/sb/genome_data/GRCh38/annotation/gff/commonshortest/indexed_A5SS_events/ /home/sb/splicing/MSCV/MC/sorted.bam --output-dir /home/sb/miso/A5SS_pe/mc_R2_out/ —-read-len 150 —-paired-end 287.4 60.3 --settings-filename /home/sb/programfiles/misopy-0.5.3/misopy/settings/miso_settings.txt
+
 #Summarize MISO output
 summarize_miso --summarize-samples /home/sb/miso/SE_pe/mc_out_pe /home/sb/miso/SE_pe/mc_out_pe_sum
 summarize_miso --summarize-samples /home/sb/miso/SE_pe/mt_out_pe /home/sb/miso/SE_pe/mt_out_pe_sum
@@ -179,6 +184,30 @@ compare_miso --compare-samples /home/sb/miso/SE_pe/wcr_out_pe /home/sb/miso/SE_p
 
 
 compare_miso --compare-samples /home/sb/miso/SE_pe/mc_R2_out /home/sb/miso/SE_pe/mt_R2_out /home/sb/miso/SE_pe/mcmt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/SE_pe/wc_R2_out /home/sb/miso/SE_pe/wt_R2_out /home/sb/miso/SE_pe/wcwt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/SE_pe/kc_R2_out /home/sb/miso/SE_pe/kt_R2_out /home/sb/miso/SE_pe/kckt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/SE_pe/wt_R2_out /home/sb/miso/SE_pe/kt_R2_out /home/sb/miso/SE_pe/wtkt_R2_comparisons/
+
+compare_miso --compare-samples /home/sb/miso/MXE_pe/mc_R2_out /home/sb/miso/MXE_pe/mt_R2_out /home/sb/miso/MXE_pe/mcmt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/MXE_pe/wc_R2_out /home/sb/miso/MXE_pe/wt_R2_out /home/sb/miso/MXE_pe/wcwt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/MXE_pe/kc_R2_out /home/sb/miso/MXE_pe/kt_R2_out /home/sb/miso/MXE_pe/kckt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/MXE_pe/wt_R2_out /home/sb/miso/MXE_pe/kt_R2_out /home/sb/miso/MXE_pe/wtkt_R2_comparisons/
+
+compare_miso --compare-samples /home/sb/miso/A5SS_pe/mc_R2_out /home/sb/miso/A5SS_pe/mt_R2_out /home/sb/miso/A5SS_pe/mcmt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A5SS_pe/wc_R2_out /home/sb/miso/A5SS_pe/wt_R2_out /home/sb/miso/A5SS_pe/wcwt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A5SS_pe/kc_R2_out /home/sb/miso/A5SS_pe/kt_R2_out /home/sb/miso/A5SS_pe/kckt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A5SS_pe/wt_R2_out /home/sb/miso/A5SS_pe/kt_R2_out /home/sb/miso/A5SS_pe/wckt_R2_comparisons/
+
+compare_miso --compare-samples /home/sb/miso/A3SS_pe/mc_R2_out /home/sb/miso/A3SS_pe/mt_R2_out /home/sb/miso/A3SS_pe/mcmt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A3SS_pe/wc_R2_out /home/sb/miso/A3SS_pe/wt_R2_out /home/sb/miso/A3SS_pe/wcwt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A3SS_pe/kc_R2_out /home/sb/miso/A3SS_pe/kt_R2_out /home/sb/miso/A3SS_pe/kckt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/A3SS_pe/wt_R2_out /home/sb/miso/A3SS_pe/kt_R2_out /home/sb/miso/A3SS_pe/wtkt_R2_comparisons/
+
+compare_miso --compare-samples /home/sb/miso/RI_pe/mc_R2_out /home/sb/miso/RI_pe/mt_R2_out /home/sb/miso/RI_pe/mcmt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/RI_pe/wc_R2_out /home/sb/miso/RI_pe/wt_R2_out /home/sb/miso/RI_pe/wcwt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/RI_pe/kc_R2_out /home/sb/miso/RI_pe/kt_R2_out /home/sb/miso/RI_pe/kckt_R2_comparisons/
+compare_miso --compare-samples /home/sb/miso/RI_pe/wt_R2_out /home/sb/miso/RI_pe/kt_R2_out /home/sb/miso/RI_pe/wtkt_R2_comparisons/
+
 
 compare_miso --compare-samples /home/sb/miso/MXE_pe/mc_out_pe /home/sb/miso/MXE_pe/mt_out_pe /home/sb/miso/MXE_pe/mcmt_comparisons/
 compare_miso --compare-samples /home/sb/miso/MXE_pe/wc_out_pe /home/sb/miso/MXE_pe/wt_out_pe /home/sb/miso/MXE_pe/wcwt_comparisons/
