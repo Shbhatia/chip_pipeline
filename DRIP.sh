@@ -28,6 +28,8 @@ bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_CYTO_sorted
 bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIC_NUC_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIC_NUC.bw
 bamCoverage --bam /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/SIT_NUC_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP/C101HW18101721/raw_data/bwaalign/bigwig/SIT_NUC.bw
 
+
+bamCoverage --bam /home/sb/DRIP_R2/A1311/raw_data/align/sambamba_bam/SIC_CYTO_sorted_sambamba.bam --binSize 10 -o /home/sb/DRIP_R2/A1311/raw_data/align/bigwig/SIC_CYTO_R2.bw --effectiveGenomeSize 2913022398
 #sort by name
 
 #call peaks - MACS2
